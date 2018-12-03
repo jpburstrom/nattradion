@@ -1,0 +1,38 @@
+# 1. Kopiera denna mapp och namnge den med nummer + kort titel, t ex "050 Badboll 3"
+# 2. Lägg in bild + ljud/midifiler och fyll i följande info.
+# 3. Lägg in i mappen "Celler"
+
+# Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
+title: Orgel
+
+# Ditt namn
+composer: Johannes Burström
+
+# En oneliner som beskriver vad du gjort
+description: A 13-ET organ sketch. 3 from the first 8 partials are selected, with random amplitude, for every note. Reverb added to taste.
+
+# Tags = de funktioner som musiken kan ha
+# t ex melody, rhythm, ambience, tonal, atonal...
+tags: 
+- slow
+- atonal
+- chordal
+
+# Tempo i bpm, bara siffror
+tempo: 60
+
+# Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
+key:
+
+# Andra celler som har mer eller mindre konkret släktskap
+relatives:
+
+# Betyg 1-5
+rating: 4
+
+# Plats för inspelningen
+location: Fredhäll, Stockholm
+
+# Nedanför strecket finns plats för ytterligare anteckningar
+---
+
