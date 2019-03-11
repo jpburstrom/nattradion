@@ -22,18 +22,27 @@ Ndef(\alps, {
 
 	snd = Limiter.ar(snd, 0.95, 0.1);
 
-	snd = (NHHall.ar(DelayC.ar(snd, 0.2, LFNoise1.kr(0.2).exprange(0.01, 0.1)), 24, 1, hiFreq:1000, hiRatio:0.1, modDepth:0.8) * 0.1) + (snd * 0.1);
 
-}).play;
 
+	snd = snd * Env.cutoff(20, 1, 4).ar(2, \gate.kr(1));
+
+});
+Ndef(\alps).play
+Ndef(\alps).end;
 (
 fork {
 	s.recorder.recHeaderFormat = "wav";
 	s.recorder.recSampleFormat = "int24";
 	s.record("alps.wav".resolveRelative);
-	Ndef(\alps).play;
+	Ndef(\modHall, {
+		var snd = In.ar(0, 2);
+		snd = (NHHall.ar(DelayC.ar(snd, 0.2, LFNoise1.kr(0.2).exprange(0.01, 0.1)), 24, 1, hiFreq:1000, hiRatio:0.1, modDepth:0.8) * 0.1) + (snd * 0.1);
+		ReplaceOut.ar(0, snd);
+	}).play;
+
+	Ndef(\alps).play(addAction:\addToHead);
 	150.wait;
-	Ndef(\alps).end(10);
+	Ndef(\alps).end;
 	20.wait;
 	s.stopRecording;
 }
