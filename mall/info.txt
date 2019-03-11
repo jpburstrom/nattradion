@@ -11,6 +11,9 @@ composer: Johannes Burström
 # En oneliner som beskriver vad du gjort
 description: 
 
+# Datum
+date: 2019-01-25
+
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
