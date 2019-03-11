@@ -33,8 +33,6 @@ Pdef(\padPlayer, Pbind(\type, \phrase, \instrument, \padder, \dur, 12, \legato, 
 )
 
 
-
-
 (
 //Play it
 fork {

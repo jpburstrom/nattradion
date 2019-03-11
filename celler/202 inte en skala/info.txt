@@ -1,0 +1,38 @@
+# 1. Kopiera denna mapp och namnge den med nummer + kort titel, t ex "050 Badboll 3"
+# 2. Lägg in bild + ljud/midifiler och fyll i följande info.
+# 3. Lägg in i mappen "Celler"
+
+# Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
+title: Välj en skala, spela inte den
+
+# Ditt namn
+composer: Johannes Burström
+
+# En oneliner som beskriver vad du gjort
+description: Rhythmic pattern playing a scale including all notes except C harmonic minor or Eb mixolydian
+
+# Tags = de funktioner som musiken kan ha
+# t ex melody, rhythm, ambience, tonal, atonal...
+tags: 
+- rhytmic
+- complex
+- pentatonic
+
+# Tempo i bpm, bara siffror
+tempo: 60
+
+# Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
+key: F# minor/major pentatonic, B minor pentatonic
+
+# Andra celler som har mer eller mindre konkret släktskap
+relatives:
+
+# Betyg 1-5
+rating: 4
+
+# Plats för inspelningen
+location: Fredhäll, Stockholm
+
+# Nedanför strecket finns plats för ytterligare anteckningar
+---
+

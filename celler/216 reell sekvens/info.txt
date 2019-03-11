@@ -1,0 +1,42 @@
+# 1. Kopiera denna mapp och namnge den med nummer + kort titel, t ex "050 Badboll 3"
+# 2. Lägg in bild + ljud/midifiler och fyll i följande info.
+# 3. Lägg in i mappen "Celler"
+
+# Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
+title: Reell sekvens
+
+# Ditt namn
+composer: Johannes Burström
+
+# En oneliner som beskriver vad du gjort
+description: Karplus-strong synthesizer played by random processes with 7-step repetition, finetuned for infinite fusion 
+
+# Datum
+date: 2019-01-28
+
+# Tags = de funktioner som musiken kan ha
+# t ex melody, rhythm, ambience, tonal, atonal...
+tags:
+- karplus-strong
+- fusion
+- chorus
+- licks
+
+# Tempo i bpm, bara siffror
+tempo: 92
+
+# Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
+key: No key
+
+# Andra celler som har mer eller mindre konkret släktskap
+relatives:
+
+# Betyg 1-5
+rating: 5
+
+# Plats för inspelningen
+location: Davidshall, Malmö
+
+# Nedanför strecket finns plats för ytterligare anteckningar
+---
+
