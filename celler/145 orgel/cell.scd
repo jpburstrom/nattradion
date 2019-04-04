@@ -4,5 +4,3 @@ Cell({
 
 }, \pattern).play;
 
-
-Fdef(\wavList).pretty

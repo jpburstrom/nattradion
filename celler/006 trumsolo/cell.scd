@@ -1,4 +1,3 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
@@ -9,5 +8,5 @@ Cell({
 	));
 
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName).play
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
 
