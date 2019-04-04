@@ -24,7 +24,7 @@ var wavList = { |path|
 		PathName(path).filesDo { |file|
 			if (file.extension.toLower == "wav") {
 				var key = file.fileNameWithoutExtension.toLower.tr(Char.space, $_).asSymbol;
-				out[key] = file.postln.asRelativePath(src.postln)
+				out[key] = file.asRelativePath(src)
 			};
 		}
 
@@ -45,6 +45,7 @@ PathName(src).entries.do { |entry|
 		var folderName = entry.folderName;
 		var destFolder = dest +/+ folderName;
 		var destFile = destFolder +/+ "cell.scd";
+		var infoFile = destFolder +/+ "info.txt";
 		var dirCreated = File.mkdir(destFolder);
 
 
@@ -55,7 +56,10 @@ PathName(src).entries.do { |entry|
 				File.delete(destFile);
 				copyFile.(entry.fullPath, destFile);
 			};
-		}
+		};
+
+		File.delete(infoFile);
+		File.copy(entry.fullPath+/+"info.txt", infoFile);
 
 
 	};
