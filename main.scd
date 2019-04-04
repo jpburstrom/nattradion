@@ -1,28 +1,24 @@
+"lib/*".resolveRelative.pathMatch.do(_.load);
 ~main = Cell({
 
-	~loadCells = {
+	~init = { |self|
+		//This is a temporary fix, call super
+		self.parent[\init].value;
+
+		~cells = "cells.scd".resolveRelative.load;
+		~playlist = "playlist.scd".resolveRelative.load;
+		self.addChildren(\cells, ~cells, \playlist, ~playlist);
 	};
 
-	//Define routing template
-	~template = (
-		~group = #[main, send, out],
-		~bus = (
-		),
-		~fx = (
-		)
-	);
+	~load = {
+		~cells.play; //Set up routing
+	};
 
-	~cells = ~loadCells.value;
-	~playlist = "playlist.scd".resolveRelative.load;
-
-	// Do all playing on load instead
-	~load = ~beforePlay;
-	// And remove default play action
-	~beforePlay = nil;
-
-	~play {
+	~play = {
 		~playlist.play;
 	};
 
+}).name_("Main"); //FIXME: Add blank/something player type
 
-}, \synth); //FIXME: Add blank/something player type
+
+~main.play
