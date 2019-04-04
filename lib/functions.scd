@@ -40,7 +40,7 @@ Fdef(\resolveAssets, { |obj|
 	obj.keysValuesChange { |k, v|
 		path = File.realpath((config.assetPath +/+ v));
 		if (path.isNil) {
-			"Couldn't find file at %".format(v).warn;
+			Error("Couldn't find file at %".format(v)).throw;
 		};
 		path
 	};
