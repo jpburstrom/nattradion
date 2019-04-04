@@ -3,38 +3,35 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
-
+title: D Eb Bb X X Bb D Eb X X D Bb Eb X X Eb Bb D X X
 # Ditt namn
-composer: Johannes Burström
+composer: Katrine Amsler
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
-
-# Datum
-date: 2019-01-25
+description: Melody as the title, substituting X X for G F, then played in some kind of 3 voiced canon
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- ping
-- pong
-- tonal
+
+- melodic
+- kanon
+- retro sound
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 80
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key: Bb
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 2
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Valby st.
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---

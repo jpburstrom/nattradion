@@ -3,39 +3,40 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
-
+title: En gammal hit helt annorlunda
 # Ditt namn
-composer: Johannes Burström
+composer: Katrine Amsler
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
-
-# Datum
-date: 2019-01-25
+description: Funky Town's transients made into a drumrack, then played while manipulating the length and compression of the drumrack-loops
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
+
 tags: 
-- ping
-- pong
-- tonal
+
+- Texture
+- Timbre
+- Hit potential 
+
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key:
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 4
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Valby st.
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---
+
+Da Bille hørte den her første gang sagde han : "Det er godt nok dårligt ! "
 

@@ -1,40 +1,42 @@
+---
 # 1. Kopiera denna mapp och namnge den med nummer + kort titel, t ex "050 Badboll 3"
 # 2. Lägg in bild + ljud/midifiler och fyll i följande info.
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
+title: Exotisk plats, oljud
 
 # Ditt namn
 composer: Johannes Burström
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
+description: Field recording from a bus close to Chemal, Siberia 2008. Processed with noise reduction and saturation.
 
-# Datum
-date: 2019-01-25
+# Datum, 2019-mm-dd
+date: 2019-02-07
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- ping
-- pong
-- tonal
+- fieldrecording
+- bus
+- noise
+- ambience
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key:
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 3
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Chemal, Siberia
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---

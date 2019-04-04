@@ -3,13 +3,13 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: 
+title: Transient call response
 
 # Ditt namn
 composer: Johannes Burström
 
 # En oneliner som beskriver vad du gjort
-description: 
+description: Two clicks taking turns playing almost-one-bar phrases 
 
 # Datum
 date: 2019-01-25
@@ -25,10 +25,10 @@ tempo:
 key:
 
 # Andra celler som har mer eller mindre konkret släktskap
-relatives:
+relatives: 027
 
 # Betyg 1-5
-rating:
+rating: 4
 
 # Plats för inspelningen
 location: Fredhäll, Stockholm

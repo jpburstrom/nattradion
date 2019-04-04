@@ -3,13 +3,13 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
+title: Allt i mikrocollage
 
 # Ditt namn
 composer: Johannes Burström
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
+description: All cells collected in a micro collage. Random snippets from each cell, played in random order.
 
 # Datum
 date: 2019-01-25
@@ -17,24 +17,26 @@ date: 2019-01-25
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- ping
-- pong
-- tonal
+- modernist
+- scattered
+- random
+- everything
+- noise
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key:
 
 # Andra celler som har mer eller mindre konkret släktskap
-relatives:
+relatives: All
 
 # Betyg 1-5
-rating: 1
+rating: 4
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Fredhäll, Stockholm
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---

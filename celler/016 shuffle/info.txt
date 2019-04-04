@@ -1,40 +1,37 @@
+---
 # 1. Kopiera denna mapp och namnge den med nummer + kort titel, t ex "050 Badboll 3"
 # 2. Lägg in bild + ljud/midifiler och fyll i följande info.
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
+title: Shuffle
 
 # Ditt namn
-composer: Johannes Burström
+composer: Samuel Hällkvist
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
-
-# Datum
-date: 2019-01-25
+description: 3 takter, 3 tempi. Oktavfest.
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- ping
-- pong
-- tonal
+- academic blues
+- excitement
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 140
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key:
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 5
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Valby St
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---

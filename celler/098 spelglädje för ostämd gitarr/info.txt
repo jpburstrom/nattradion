@@ -3,39 +3,40 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
+title: Spelglädje för ostämd gitarr
 
 # Ditt namn
-composer: Johannes Burström
+composer: Katrine Amsler
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
-
-# Datum
-date: 2019-01-25
+description: Me playing my Big Bombastic Collective Teisco guitar
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- ping
-- pong
-- tonal
+
+- Shoegaze
+- More strings
+- Teisco
+
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key: Ab minor
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 2
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Valby st.
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---
 
+Jeg vil gerne søge dispensation for at ændre titel til blot "spelglädje för ostämd gitarr"
+Original titel "spelglädje för ostämd gitarr line'ad x 4"

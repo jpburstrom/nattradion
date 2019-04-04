@@ -3,39 +3,44 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Melodi 3 tärningskast, Rytm 4 tärningskast
+title: Hip Hop kun reverb
 
 # Ditt namn
-composer: Johannes Burström
+composer: Katrine Amsler
 
 # En oneliner som beskriver vad du gjort
-description: Dice choosing from 6 melodic and rhythmic patterns
-
-# Datum
-date: 2019-01-25
-
+description: Various hip hop songs from the 90s, 3 times through 3 different reverbs, last one called Big Empty Stadium 
+   
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
+
 tags: 
-- ping
-- pong
-- tonal
+
+- Hip Hop
+- Space
+- Orchestra inside a whale
+- Chanting
+ 
+
 
 # Tempo i bpm, bara siffror
-tempo: 60
+tempo: 95
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
-key: C
+key: 
 
 # Andra celler som har mer eller mindre konkret släktskap
 relatives:
 
 # Betyg 1-5
-rating: 1
+rating: 2
 
 # Plats för inspelningen
-location: Johannesfred, Stockholm
+location: Valby st.
 
 # Nedanför strecket finns plats för ytterligare anteckningar
 ---
+
+
+
 

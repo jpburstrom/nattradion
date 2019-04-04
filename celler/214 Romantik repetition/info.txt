@@ -28,7 +28,7 @@ key:
 relatives:
 
 # Betyg 1-5
-rating:
+rating: 1
 
 # Plats för inspelningen
 location: Fredhäll, Stockholm

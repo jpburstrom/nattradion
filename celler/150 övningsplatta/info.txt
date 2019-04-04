@@ -14,10 +14,9 @@ description: Boring rhythm for dry sound
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
-- rhythm
 
 # Tempo i bpm, bara siffror
-tempo: 
+tempo: 140
 
 # Tonart, t ex "C" eller "G major", eller kanske "E phrygian"
 key:
@@ -26,7 +25,7 @@ key:
 relatives:
 
 # Betyg 1-5
-rating:
+rating: 2
 
 # Plats för inspelningen
 location: Fredhäll, Stockholm

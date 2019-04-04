@@ -3,13 +3,13 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: 
+title: Tolvstämmigt, glest
 
 # Ditt namn
 composer: Johannes Burström
 
 # En oneliner som beskriver vad du gjort
-description: 
+description: Twelve sines playing twelve narrow clusters
 
 # Datum
 date: 2019-01-25
@@ -17,6 +17,9 @@ date: 2019-01-25
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
 tags: 
+- low
+- epic
+- cluster
 
 # Tempo i bpm, bara siffror
 tempo: 
@@ -28,7 +31,7 @@ key:
 relatives:
 
 # Betyg 1-5
-rating:
+rating: 2
 
 # Plats för inspelningen
 location: Fredhäll, Stockholm

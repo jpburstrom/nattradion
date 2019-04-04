@@ -25,7 +25,7 @@ tempo: 60
 key:
 
 # Andra celler som har mer eller mindre konkret släktskap
-relatives:
+relatives: 145
 
 # Betyg 1-5
 rating: 4
