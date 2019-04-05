@@ -1,9 +1,12 @@
 // Temporary radio
 
 s.waitForBoot {
-    
-    {
-        SinOsc.ar({ LFNoise2.kr(1).exprange(200, 800) }.dup) * 0.1
-    }.play
+	var main = "main.scd".loadRelative[0];
 
-};
+	{ EnvGen.kr(Env.perc, Impulse.kr(0.2), 0.1) * SinOsc.ar.dup }.play
+
+	if (main.isStopped) {
+		main.play
+	};
+
+}
