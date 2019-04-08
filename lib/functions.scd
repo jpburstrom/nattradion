@@ -1,6 +1,17 @@
 var config = "../config.scd".loadRelative[0].postln;
 var assetPath;
 
+// Interpreter preprocessor, allowing an "/*EOF*/" string in a document
+// to stop loading (useful for keeping test code etc, while still being able to load it as external file)
+this.preProcessor = { arg str;
+    var split = str.findRegexp("/\\*EOF\\*/\\s*$");
+    if (split.size > 0) {
+        str = str.keep(split[0][0])
+    };
+    str
+};
+//
+
 Fdef(\wavList, { |sub, path|
 
 	var out = ();
