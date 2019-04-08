@@ -10,11 +10,10 @@ SynthDef(\vibra, {
 	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 
-Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) * 8), 0.125, 0.125), 0.8).tanh * 0.125 * 0.1  }).play;
-)
+//Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) * 8), 0.125, 0.125), 0.8).tanh * 0.125 * 0.1  }).play;
+);
 
 (
-TempoClock.tempo = 90/60;
 Pdef(\kvint, Ptpar(
 	//Three voices
 	Array.geom(3, 110, 1.5).collect({ |baseFreq, i|
@@ -37,8 +36,10 @@ Pdef(\kvint, Ptpar(
 			)
 		]
 	}).flatten
-)).play
+))
 )
+
+/*EOF*/
 
 (
 //Play it

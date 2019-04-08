@@ -1,10 +1,15 @@
-//updateme <-- Remove this line when editing
-thisProcess.nowExecutingPath.debug("TODO");
+"reell sekvens.scd".loadRelative;
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~settings[\quant] = 1;
+	~settings[\tempo] = 92;
+	~pattern = Pdef(\reellsekvens);
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+	~load = {
+		currentEnvironment.set("level.main.amp", 6.dbamp)
+	};
+
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)
+
+/*EOF*/

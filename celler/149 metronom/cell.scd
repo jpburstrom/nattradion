@@ -1,10 +1,10 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
+		metronom: "149 metronom/metronom.wav";
 	));
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+

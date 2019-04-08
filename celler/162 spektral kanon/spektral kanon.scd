@@ -5,11 +5,10 @@ SynthDef(\sin, {
 	snd = snd * Env.asr(0.01, 1.0, 0.01).ar(2, \gate.kr(1));
 	Out.ar(\bus.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
-)
+);
 
 
 (
-Tempo.bpm = 90;
 Pdef(\canon, Ptpar(4.collect({ |i|
 
 
@@ -26,8 +25,9 @@ Pdef(\canon, Ptpar(4.collect({ |i|
 
 	[i*(2.5+(i-1)), ptn]
 
-}).flatten)).play
+}).flatten))
 
 )
 
+/*EOF*/
 Pn(Pdef(\canon), 1).scoreClockRender("canon.wav".resolveRelative, 120 * 90/60, 10)

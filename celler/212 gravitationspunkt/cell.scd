@@ -1,10 +1,11 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
+
+"gravitationspunkt.scd".resolveRelative.load;
+
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~settings[\tempo] = 120;
+	~pattern = Pdef(\gravity);
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

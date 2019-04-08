@@ -1,4 +1,3 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
@@ -7,4 +6,4 @@ Cell({
 		 'alldeles': "129 alldeles för tydlig, alldeles för kort/129 alldeles för tydlig, alldeles för kort.wav"
 	));
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName);

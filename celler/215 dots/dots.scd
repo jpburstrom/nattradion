@@ -20,7 +20,7 @@ SynthDef(\dots, {
 
 
 
-)
+);
 
 
 ~string = ". .
@@ -34,7 +34,7 @@ SynthDef(\dots, {
 
 
 (
-TempoClock.tempo = 75/60;
+
 Pdef(\dots, Ppar(
 	~string.collect{ |ptn, i|
 		Pbind(
@@ -54,12 +54,12 @@ Pdef(\dots, Ppar(
 			\octave, 4 + (i % 3),
 			\legato, Pwhite(0.5, 1.6),
 		)
-	}.postln
-)).play;
+	}
+));
 )
 
-{ NHHall.ar(DelayC.ar(In.ar(0, 2), 0.1, 0.1), 2) * 0.1 }.play
-
+//{ NHHall.ar(DelayC.ar(In.ar(0, 2), 0.1, 0.1), 2) * 0.1 }.play
+/*EOF*/
 
 (
 //Play it

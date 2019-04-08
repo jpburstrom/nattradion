@@ -6,4 +6,4 @@ Cell({
 		 'syntetisk': "104 syntetisk, elastisk/104 syntetisk, elastisk.wav"
 	));
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName);

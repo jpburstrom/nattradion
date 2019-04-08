@@ -1,6 +1,5 @@
 (
-Ndef.audio(\sinus_koral).fadeTime = 10;
-Ndef(\sinus_koral, {
+SynthDef(\sinus_koral, {
 
 	var voices = [
 		{ Drand([1, 1.25, 1.5], inf) },
@@ -35,11 +34,11 @@ Ndef(\sinus_koral, {
 
 
 	snd = snd * Env.asr(\atk.kr(1), 1, \rel.kr(1), [-4, 4]).ar(2, \gate.kr(1));
-	snd.postln;
+	Out.ar(\out.kr(0), snd);
 
-}).mold.play;
+}).add
 )
-
+/*EOF*/
 TempoClock.tempo = 1
 Ndef(\sinus_koral).end(10);
 

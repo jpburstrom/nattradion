@@ -1,10 +1,13 @@
 //updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
+"spektral kanon.scd".resolveRelative.load;
+
+
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~settings[\tempo] = 90;
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+	~pattern = Pdef(\canon);
+
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

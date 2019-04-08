@@ -16,10 +16,9 @@ SynthDef(\transient, {
 
 	Out.ar(\bus.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
-)
+);
 
 (
-Tempo.bpm = 70;
 Pdef(\transient, Ppar(
 	[
 		Pbind(
@@ -66,8 +65,8 @@ Pdef(\transient, Ppar(
 
 		)
 	]
-)).play
+))
 )
-
+/*EOF*/
 
 Pn(Pdef(\transient), 1).scoreClockRender("transient.wav".resolveRelative, 120, 10);

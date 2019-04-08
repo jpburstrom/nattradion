@@ -8,10 +8,10 @@ SynthDef(\pluck, {
 	snd = snd * Env.asr(\atk.kr(0), 1, \rel.kr(1), [-8, 4]).ar(2, \gate.kr(1));
 	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add
-)
-Ndef(\hall, { NHHall.ar(In.ar(0, 2), 0.8) *  0.4  }).play;
+);
+//Ndef(\hall, { NHHall.ar(In.ar(0, 2), 0.8) *  0.4  }).play;
 (
-TempoClock.tempo = 92/60;
+//TempoClock.tempo = 92/60;
 Pdef(\reellsekvens, {
 	var numNotes = 7;
 	Ppar([
@@ -126,8 +126,10 @@ Pdef(\reellsekvens, {
 
 		)
 	])
-}).play
-)
+})
+);
+
+/*EOF*/
 
 (
 //Play it

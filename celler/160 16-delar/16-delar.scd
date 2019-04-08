@@ -14,15 +14,13 @@ SynthDef(\s16, {
 	Out.ar(0, Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 
-)
-Array.geom(5, 1, 2).pyramid(5)
+);
 (
-Tempo.bpm = 120;
 Pdef(\s16, PmonoArtic(
 	 \s16,
 	\octave, 4,
 	\dur, 1/4,
-	\width, Pseries(0, 0.3, 3).repeat(inf).trace,
+	\width, Pseries(0, 0.3, 3).repeat(inf),
 	\scale, Scale.harmonicMinor,
 	\pan, Pwhite(-0.1, 0.1),
 	\atk, Pseq([0, 0.001], inf),
@@ -34,9 +32,10 @@ Pdef(\s16, PmonoArtic(
 	\fatk, Ppatlace([Pwhite(0.001, 0.8), 0.4, Pwrand([0.0, 0.9], [0.1, 0.9], inf)], inf),
 	\frel, 0.1,
 	\degree, Pstep(Pseq(Array.geom(5, 1, 2).pyramid(5), inf), PdurStutter(Pseq(Array.geom(5, 1, 2), inf), 1)) - 1 * 0.5
-)).play;
+));
 )
 
+/*EOF*/
 Pdef(\s16).stop
 
 (

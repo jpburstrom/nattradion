@@ -1,10 +1,10 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
+"tolvstämmigt.scd".resolveRelative.load;
+
+
 Cell({
+	~settings[\tempo] = 110;
+	~pattern = Pdef(\tolv);
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
-
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

@@ -9,10 +9,9 @@ SynthDef(\poly, {
 
 	Out.ar(\out.kr(0), snd * \amp.kr);
 }).add;
-)
+);
 
 (
-TempoClock.tempo = 173/60;
 Pdef(\poly, Pn(Pbind(
 	\instrument, \poly,
 	\dur, Pseq([1.6, 2.4, 2.6, 1.4, 1, 0.6, 2.4, 0.6, 1, 2.4, 1.6, 2.4, 1.6, 2.4]),
@@ -22,9 +21,10 @@ Pdef(\poly, Pn(Pbind(
 	\ctranspose, 0,
 	\note, Pseq([0,3,13,9, 6], inf).clump(2),
 	\octave, Pseq([[4,5], [6,4]], inf)
-))).play
-)
-(instrument:\poly).play
+)))
+);
+
+/*EOF*/
 
 (
 fork {

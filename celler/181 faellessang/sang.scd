@@ -1,5 +1,3 @@
-~buffers = "samples/*.wav".resolveRelative.pathMatch.collect { |path| Buffer.read(s, path) };
-~buffers.do(_.normalize);
 
 (
 SynthDef(\bufPlayerSang, {
@@ -8,22 +6,16 @@ SynthDef(\bufPlayerSang, {
 	Out.ar(\out.kr, Balance2.ar(snd[0], snd[1], \pan.kr(0), \amp.kr(0.1)));
 }).add;
 
-)
-(
-Ndef(\hall, {
-	var snd = In.ar(0, 2);
-	snd = (NHHall.ar(snd, 2) * 0.15)
-}).play
-)
+);
 
 (
 Pdef(\sang,
-	Penvir((index:0, buffers: ~buffers), Ppar(9.collect { |i|
+	Ppar(9.collect { |i|
 		Pbind(
 			\instrument, \bufPlayer,
 			\index, Pfunc { ~buffers.size.rand; },
 			\freq, Pfunc { |ev|  (i - 4) * (["A1", "A2", "B2", "C#3", "D#3", "E2", "G2"].namecps[ev.index]) },
-			\bufnum, Pfunc { |ev| ~buffers[ev.index] },
+			\bufnum, Pfunc { |ev| ~buffers.postln[ev.index] },
 			\dur, Pfunc { |ev| ev.bufnum.duration },
 			\pan, Pfuncn({ |ev|
 				[-0.5, 0.5].interpolate(4.5).scramble[ev.index]
@@ -32,10 +24,10 @@ Pdef(\sang,
 			\amp, 0.05,
 		).trace
 	})
-	)
-).play;
-)
-[-0.5, 0.5].interpolate(4.5)
+);
+);
+/*EOF*/
+
 
 (
 //Play it

@@ -8,6 +8,7 @@ var notes = "dance,techno,edm,house,trance".split(Char.comma).collect { |word|
 	out = out.replace("-", Rest());
 	out
 };
+
 (
 SynthDef(\dteht, {
 	var trig = HPF.ar(Decay.ar(Impulse.ar(0), 0.008).lag(0.02), ExpRand(500, 1500));
@@ -22,10 +23,9 @@ SynthDef(\dteht, {
 }).add
 );
 
-Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) ), 0.125, 0.125), 1.8) * 0.1  }).play;
+//Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) ), 0.125, 0.125), 1.8) * 0.1  }).play;
 
 (
-Tempo.bpm = 120;
 Pdef(\dteht, Pbind(
 	\instrument, \dteht,
 	\dur, Pseq([0.5, 1], inf),
@@ -58,9 +58,11 @@ Pdef(\dteht, Pbind(
 		}
 	},
 	\scale, Scale.chromatic(\sept1)
-)).play;
+));
 
 )
+
+/*EOF*/
 
 (
 (

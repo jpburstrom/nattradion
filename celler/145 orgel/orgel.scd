@@ -3,7 +3,7 @@ SynthDef(\orgel, {
 	var gate = \gate.kr(1);
 	var numPartials = 8;
 	var partials = Array.series(numPartials, 1).scramble;
-	var inAmps = \amps.kr(Array.exprand(numPartials, 0.25, 1)).postln;
+	var inAmps = \amps.kr(Array.exprand(numPartials, 0.25, 1));
 	var amps = partials.collect { |p, i|
 		Env.asr(0.01.exprand(0.2), inAmps[i] * numPartials.reciprocal, 0.01.exprand(0.05)
 		).ar(0, gate) * LFNoise1.kr(1).range(0.98, 1.02);
@@ -23,7 +23,7 @@ SynthDef(\orgel, {
 	Out.ar(\out.kr(0), Pan2.ar(snd));
 
 }).add
-)
+);
 (
 Pdef(\orgel, Pbind(
 	\instrument, \orgel,
@@ -38,10 +38,10 @@ Pdef(\orgel, Pbind(
 	\scale, Scale((0..12), 13),
 	\degree, Pxrand([0,3,6,9,12], inf).clump(3),
 	\octave, Pwhite(5,7)
-)).play
-)
+))
+);
 
-//EOF
+/*EOF*/
 
 (
 //Play it

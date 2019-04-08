@@ -1,8 +1,6 @@
-Ndef(\rockring_ringmod, {
+SynthDef(\rockring_ringmod, { |tempo, baseFreq|
 
 	var snd,
-	tempo = 95,
-	baseFreq = 220,
 	freqs = baseFreq / [ 11.0, 4.0, 2.75, 2.0, 1.375 ],
 	trig1 = Impulse.ar((tempo * Demand.ar(Impulse.ar(0.25), 0, Diwhite(3, 8, inf)))/60),
 	trig2 = Impulse.ar((tempo * 2)/60),
@@ -21,10 +19,13 @@ Ndef(\rockring_ringmod, {
 	snd = RLPF.ar(snd, LFDNoise3.kr(LFNoise1.kr(1).range(0.1, 10)).exprange(800, 18000), 0.1);
 	snd = HPF.ar(snd, 50);
 
-	SoftClipper8.ar(snd)
+	snd = SoftClipper4.ar(snd);
 
-}).mold.play;
+	Out.ar(\out.kr(0), snd);
 
+}).add;
+
+/*EOF*/
 
 (
 //Play it

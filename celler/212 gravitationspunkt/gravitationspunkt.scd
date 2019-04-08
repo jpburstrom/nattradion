@@ -15,11 +15,10 @@ SynthDef(\flute, {
 
 	Out.ar(\bus.kr(0), Balance2.ar(snd[0], snd[1], \pan.kr(0), \amp.kr(0.1)));
 }).add;
-)
+);
 
 
 (
-TempoClock.tempo = 2;
 Pdef(\gravity, Pbind(
 	\octave, Prand([4,6], inf).clump(3),
 
@@ -37,8 +36,8 @@ Pdef(\gravity, Pbind(
 	\root, -4,
 	\scale, Scale.harmonicMinor,
 	\degree, Pstep([[0,1,4], [2,4,5], [2,5,7]], 2, inf) * Pwhite(1,2)
-)).play
+));
 )
-
+/*EOF*/
 
 Pn(Pdef(\gravity), 1).scoreClockRender("gravity.wav".resolveRelative, 120, 10)

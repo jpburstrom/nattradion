@@ -12,7 +12,7 @@ SynthDef(\tolv, {
 
 	Out.ar(\out.kr(0), snd * \amp.kr);
 }).add;
-)
+);
 
 
 (
@@ -29,8 +29,10 @@ Pdef(\tolv, Pbind(
 	\rel, Pkey(\dur) * 0.7,
 	\amp, Pn(0.3, 12),
 )
-).play
 )
+);
+
+/*EOF*/
 
 (
 s.recorder.recHeaderFormat = "wav";

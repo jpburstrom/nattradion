@@ -6,11 +6,10 @@ SynthDef(\enSkala, {
 	snd = snd.dup * 0.1;
 	snd = snd.softclip * 0.5  * \amp.kr(0.1);
 	Out.ar(\out.kr(0), snd);
-}).add
-)
+}).add;
+);
 
 (
-Pdef(\enSkala).clear;
 Pdef(\enSkala, Pbind(
 	\instrument, \enSkala,
 	\octClump, Pstep([2,3,4], 16, inf),
@@ -22,15 +21,15 @@ Pdef(\enSkala, Pbind(
 	\scale, Pfunc { |ev|
 		Scale((0..11).reject({ |x| ev.notScale.semitones.includes(x.asFloat) }), 12, Tuning.just)
 	},
-	\root, Pif(Pbinop('==', Pkey(\notScale), Scale.harmonicMinor), 0, 3).trace,
-	\test, Pfunc { |ev| ev.notScale.name.postln; ev.root + ev.scale.degrees }.trace,
+	\root, Pif(Pbinop('==', Pkey(\notScale), Scale.harmonicMinor), 0, 3),
+	\test, Pfunc { |ev| ev.notScale.name; ev.root + ev.scale.degrees },
 	\degClump, Pstep([2,1], 7, inf),
 	\degree, Pclump(Pkey(\degClump), Place([(0..3).reverse, (1..4), (3..8)].reverse, inf)),
 	\amp, Place([0.3, [0.05, 0.1], [0.3, 0.05]] * 4, inf),
 	\dur, Place([[0.25, 0.5], [0.375, 0.125], [0.125, 0.375, 0.5]], inf)
-)).play
+))
 )
-
+/*EOF*/
 
 (
 Pdef(\enSkala).scoreClockRender("inte-en-skala.wav".resolveRelative, 120, 10, 44100, "WAV");

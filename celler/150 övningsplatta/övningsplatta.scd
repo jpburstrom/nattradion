@@ -12,9 +12,9 @@ SynthDef(\pad, {
 
 	OffsetOut.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0)));
 }).add;
-)
+);
 
-Ndef(\hall, { NHHall.ar(In.ar(0, 2), 0.4) * 0.05  }).play;
+//Ndef(\hall, { NHHall.ar(In.ar(0, 2), 0.4) * 0.05  }).play;
 
 (
 Pdef(\padder, { |dur|
@@ -29,10 +29,10 @@ Pdef(\padder, { |dur|
 	);
 });
 
-Pdef(\padPlayer, Pbind(\type, \phrase, \instrument, \padder, \dur, 12, \legato, 4, \recursionLevel, 1)).play
+Pdef(\padPlayer, Pbind(\type, \phrase, \instrument, \padder, \dur, 12, \legato, 4, \recursionLevel, 1));
 )
 
-
+/*EOF*/
 (
 //Play it
 fork {

@@ -1,10 +1,12 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
+
+"sinus-koral.scd".resolveRelative.load;
+
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~template[\main] = (
+		main: [\sinus_koral]
+	);
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)

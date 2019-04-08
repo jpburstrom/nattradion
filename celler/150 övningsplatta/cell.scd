@@ -1,10 +1,13 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
+
+"övningsplatta.scd".resolveRelative.load;
+
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~settings[\tempo] = 70;
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+	~pattern = Pdef(\padPlayer);
+
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)
+

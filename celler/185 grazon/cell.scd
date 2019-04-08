@@ -1,10 +1,13 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
+
+"grazon.scd".resolveRelative.load;
+
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~template[\main] = (
+		//TODO: tempo
+		main: #[grazon]
+	);
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)

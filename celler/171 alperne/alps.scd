@@ -1,6 +1,6 @@
-Ndef(\alps, {
+SynthDef(\alps, {
 
-	var base = "Eb3".namecps;
+	var base = 311.12698372208; //"Eb3".namecps;
 	var freqs = [0.75, 1, 1.5];
 
 	var trig = Trig.kr(Dust.kr(0.1) + Impulse.kr(0), 8);
@@ -26,9 +26,11 @@ Ndef(\alps, {
 
 	snd = snd * Env.cutoff(20, 1, 4).ar(2, \gate.kr(1));
 
-});
-Ndef(\alps).play
-Ndef(\alps).end;
+	Out.ar(\out.kr(0), snd);
+
+}).add;
+/*EOF*/
+
 (
 fork {
 	s.recorder.recHeaderFormat = "wav";

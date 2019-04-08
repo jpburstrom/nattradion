@@ -1,4 +1,4 @@
-Ndef(\grazon, {
+SynthDef(\grazon, { |tempo|
 	var snd;
 	snd = [
 		LFPulse.ar(1).range(2,3) * LFPulse.ar(0.5).range(0.5,1),
@@ -9,10 +9,11 @@ Ndef(\grazon, {
 		GrayNoise.ar * LFPulse.ar(num, 0.0, LFNoise2.kr(0.5).range(0.1, 0.3), 0.25, 0.005);
 	};
 
-	Splay.ar(snd, 0.6)
+	Out.ar(\out.kr(0), Splay.ar(snd, 0.6));
 
-}).play;
+}).add;
 
+/*EOF*/
 (
 //Play it
 fork {

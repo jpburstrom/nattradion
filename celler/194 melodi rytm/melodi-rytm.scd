@@ -7,12 +7,11 @@ SynthDef(\blippo, {
 	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 
-Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) * 8), 0.125, 0.125), 0.8).tanh * 0.125 * 0.1  }).play;
-)
+//Ndef(\weirdHall, { NHHall.ar(DelayC.ar((In.ar(0, 2) * 8), 0.125, 0.125), 0.8).tanh * 0.125 * 0.1  }).play;
+);
 
 
 (
-Tempo.bpm = 60;
 Pdef(\blippo, {
 	var dice = { (1..6).scramble.first };
 	Ppar(
@@ -36,10 +35,12 @@ Pdef(\blippo, {
 						Pseq([0.375, 0.125]), Pseq([0.125, 0.375]), Pseq([2/6, 1/6])],
 
 					Plazy { Pseq(4.collect{ dice.value }) }
-				), 30).trace
+				), 30)
 			);
 	})
-}).play;
+});
 )
+
+/*EOF*/
 
 Pn(Pdef(\blippo), 1).scoreClockRender("melodi-rytm.wav".resolveRelative, 120, 10)

@@ -1,10 +1,12 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
+
+"alps.scd".resolveRelative.load;
+
 
 Cell({
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		  
-	));
+	~template[\main] = (
+		main: [\alps]
+	);
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)
