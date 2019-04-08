@@ -33,7 +33,7 @@ Cell({
 		}
 	};
 
-	"celler/*/cell.scd".resolveRelative.pathMatch.collect { |path|
+	"celler/*/cell.scd".resolveRelative.pathMatch.do { |path|
 		// cell.scd should return a Cell instance
 		~loadCellFromPath.(path);
 	};
@@ -64,7 +64,7 @@ Cell({
 
 	~reloadCell = { |cell|
 		var path = cell[\metadata][\path];
-		~loadCellFromPath.(cell);
+		~loadCellFromPath.(path);
 	};
 
 	~reload = { |self|
