@@ -15,7 +15,17 @@ var path = thisProcess.nowExecutingPath;
 			var view = View(content).layout_(HLayout().spacing_(0).margins_(0, 5));
 			var list = ListView(view).action_({ |lv|
 				cell = cellList[lv.value];
-				playBtn.value = cell.isPlaying.asInteger;
+				if (playing.isPlaying) {
+					playing.freeAll;
+					cells.reloadCell(cell);
+					playing = cell.play;
+				};
+				fork {
+					cell.wait;
+					defer {
+						playBtn.value = cell.isPlaying.asInteger;
+					}
+				}
 			});
 			var btns = View(view).layout_(VLayout().spacing_(0).margins_([10, 0]));
 			var playBtn	= Button(btns).states_([["Stopped"], ["Playing"]]).action_({ |btn|
@@ -23,14 +33,32 @@ var path = thisProcess.nowExecutingPath;
 					cell.freeAll;
 				} {
 					if (playing.isPlaying) { playing.freeAll } ;
+					cells.reloadCell(cell);
 					playing = cell.play;
 				};
 			});
+
 			var reloadBtn = Button(btns).states_([["Reload"]]).action_({ |btn|
-				cellList[list.value] = try { cells.reloadCell(cell) } { cell };
+				cellList[list.value] = try {
+					cells.reloadCell(cell)
+				} { |err|
+					err.postProtectedBacktrace;
+					cell
+				};
 			});
+
 			var editBtn = Button(btns).states_([["Edit"]]).action_({ |btn|
 				cells.editCell(cell);
+			});
+			var fadeBtn = Button(btns).states_([["Fade in"]]).action_({ |btn|
+				if (cell.isPlaying.not) {
+					cell.fadeIn(5);
+				};
+			});
+			var fadeOutBtn = Button(btns).states_([["Fade out"]]).action_({ |btn|
+				if (cell.isPlaying) {
+					cell.fadeOut(5);
+				}
 			});
 			btns.layout.add(nil);
 			list.items = cellList.collect { |cell| cell.metadata[\title] };
@@ -38,7 +66,7 @@ var path = thisProcess.nowExecutingPath;
 
 			view.refresh
 		};
-		win = Window.new.layout_(VLayout());
+		win = Window.new("Celler", Rect(0, 0, 400, 600).center_(Window.availableBounds.center)).layout_(VLayout());
 		content = View(win).layout_(HLayout().spacing_(0).margins_(0));
 		footer = View(win).layout_(HLayout().spacing_(0).margins_(0));
 		actionBtn.value(footer, "Reload", {
@@ -46,7 +74,7 @@ var path = thisProcess.nowExecutingPath;
 			path.load
 		});
 		footer.layout.add(nil);
-		2.do { |index|
+		1.do { |index|
 			makeSlot.(index);
 		};
 
