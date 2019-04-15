@@ -18,7 +18,14 @@
 		~playlist.play;
 	};
 
+	~freeAll = {
+		~cells.free;
+		~playlist.free;
+	};
+
 }).name_("Main"); //FIXME: Add blank/something player type
 
-
 ~main.play
+
+
+
