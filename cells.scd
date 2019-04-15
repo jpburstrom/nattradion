@@ -14,22 +14,27 @@ Cell({
 
 		cell = path.load;
 
-		if (cell.isKindOf(Cell)) {
-			// Add metadata;
-			cell.metadata = metadata;
-			cell.metadata[\path] = path;
-			// If tempo is not set in cell, get tempo from metadata
-			cell.settings[\tempo] = cell.settings[\tempo] ? metadata[\tempo];
-			cell.name = metadata[\title];
+		if ((cell.settings[\disabled] == true).not) {
 
-			// Get number from directory name
-			num = dir.basename.split(Char.space).first.asInteger;
-			cell.metadata[\number] = num;
-			~template[\cells][num] = cell;
-			cell
+			if (cell.isKindOf(Cell)) {
+				// Add metadata;
+				cell.metadata = metadata;
+				cell.metadata[\path] = path;
+				// If tempo is not set in cell, get tempo from metadata
+				cell.settings[\tempo] = cell.settings[\tempo] ? metadata[\tempo];
+				cell.name = metadata[\title];
+
+				// Get number from directory name
+				num = dir.basename.split(Char.space).first.asInteger;
+				cell.metadata[\number] = num;
+				~template[\cells][num] = cell;
+				cell
+			} {
+				// PathName(path).pathOnly.openOS;
+				Error("Path at % should return a cell".format(path)).throw;
+			}
 		} {
-			// PathName(path).pathOnly.openOS;
-			Error("Path at % should return a cell".format(path)).throw;
+			"Cell % disabled".format(cell.name).postln;
 		}
 	};
 
