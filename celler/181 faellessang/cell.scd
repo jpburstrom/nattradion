@@ -1,4 +1,3 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 "sang.scd".resolveRelative.load;
 

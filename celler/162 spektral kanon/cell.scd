@@ -1,4 +1,3 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 "spektral kanon.scd".resolveRelative.load;

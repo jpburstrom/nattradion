@@ -1,7 +1,6 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
-c = Cell({
+Cell({
 	var files = Fdef(\resolveAssets).value((
 		'003_vokal_kat_mix_2': "003 vokal/003 vokal_KAT mix 2.wav",
 		'003_vokal_kat_mix': "003 vokal/003 vokal_KAT mix.wav"
@@ -11,4 +10,5 @@ c = Cell({
 	)
 
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName).play
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+

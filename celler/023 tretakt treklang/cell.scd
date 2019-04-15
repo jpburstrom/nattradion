@@ -1,7 +1,8 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
+
+    //TODO: Choose
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
 		 'tretakt_treklang_sam_version': "023 tretakt treklang/tretakt treklang SAM version.wav",

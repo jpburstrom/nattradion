@@ -1,4 +1,3 @@
-//updateme <-- Remove this line when editing
 thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
@@ -10,7 +9,7 @@ Cell({
 		 '110_c_dur_casio_trumpet_mel.': "110 C dur/STEMS/110 C dur Casio trumpet mel..wav",
 		 
   '110_c_dur_synth_tuba': "110 C dur/STEMS/110 C dur Synth tuba.wav",
-		 '110_c_dur': "110 C dur/110 C dur.wav",
+		 //'110_c_dur': "110 C dur/110 C dur.wav",
 		 '110_c_dur_synth_trumpet_mel.': "110 C dur/STEMS/110 C dur Synth trumpet mel..wav" 
 	));
 
