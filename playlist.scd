@@ -1,18 +1,32 @@
 Cell({
 
+	var cells;
+
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
-			~cells.postln.do { |cell|
+			var waitStream = Pexprand(2, 30).asStream;
+			cells
+			//filter out disabled cells
+			//this is done already on load, but maybe we
+			.reject { |cell| cell.settings[\disabled] == true }
+			.do { |cell|
 				var dur;
-				cell.name.postln;
 				cell.load;
+				cell.name.postln;
 				if (dur != 0 and: { dur != inf }) {
-					cell.fadeIn(5);
-					old !? (_.fadeOut(5));
-					15.wait;
+					old !?  { |oc|
+						var clock = oc.settings[\clock] ? TempoClock.default;
+						clock.schedAbs(
+							oc.quant.nextTimeOnGrid(clock), {
+								oc.fadeOut(3);
+								cell.play;
+						});
+					} ?? { cell.play };
+					waitStream.next.wait;
 					old = cell;
 				} {
+					"Freeing synth -- things are bad".postln;
 					cell.freeAll;
 				};
 			};
@@ -21,9 +35,9 @@ Cell({
 
 	~load = {
 		~routine.reset;
-		~cells = currentEnvironment.mother.cells.cells;
+		cells = currentEnvironment.mother.cells.cells;
 		//Do something here, sort etc;
-		~cells = ~cells.values.asArray.scramble;
+		cells = cells.values.asArray.scramble;
 	};
 
 	~play = {
@@ -34,6 +48,12 @@ Cell({
 		~routine.stop;
 	};
 
+	//Things free themselves in other ways
+	~freeAll = {
+		"free".postln;
+	};
 
-}).name_("playlist");
+
+}).name_("playlist")
+
 
