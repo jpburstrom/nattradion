@@ -55,17 +55,13 @@ Cell({
 	};
 
 	~load = {
-		"nop".postln;
+		//"nop".postln;
 	};
 
 	~play = {
-		"no-op".postln;
+		//"no-op".postln;
 	};
 
-	~freeAll = {
-		~cells.do(_.free);
-		~cells.clear;
-	};
 
 	~reloadCell = { |cell|
 		var path = cell[\metadata][\path];
