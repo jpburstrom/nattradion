@@ -7,6 +7,9 @@ Cell({
 
 	~settings[\tempo] = 90;
 
+	~load = {
+		~settings[\duration] = 60.rrand(180);
+	};
 
 	~pattern = Pdef(\kvint);
 

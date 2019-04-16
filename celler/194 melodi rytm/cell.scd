@@ -6,7 +6,9 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 
 	~settings[\tempo] = 60;
-
+	~load = {
+		~settings[\duration] = 20.rrand(40);
+	};
 	~pattern = Pdef(\blippo);
 
 }, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

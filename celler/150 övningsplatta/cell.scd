@@ -6,7 +6,9 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 
 	~settings[\tempo] = 70;
-
+	~load = {
+		~settings[\duration] = 40.rrand(80);
+	};
 	~pattern = Pdef(\padPlayer);
 
 }, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

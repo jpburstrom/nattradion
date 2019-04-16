@@ -6,4 +6,4 @@ Cell({
 		 'percussion': "001 percussion/percussion.wav"
 	));
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName);

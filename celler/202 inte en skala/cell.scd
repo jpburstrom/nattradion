@@ -6,6 +6,9 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 
 	~settings[\tempo] = 60;
+	~load = {
+		~settings[\duration] = 90.rrand(180);
+	};
 	~pattern = Pdef(\enSkala);
 
 }, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)
