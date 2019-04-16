@@ -14,16 +14,17 @@ Cell({
 				var dur;
 				cell.load;
 				cell.name.postln;
+				dur = cell.settings[\duration];
 				if (dur != 0 and: { dur != inf }) {
 					old !?  { |oc|
 						var clock = oc.settings[\clock] ? TempoClock.default;
 						clock.schedAbs(
 							oc.quant.nextTimeOnGrid(clock), {
-								oc.fadeOut(3);
+								oc.stop;
 								cell.play;
 						});
 					} ?? { cell.play };
-					waitStream.next.wait;
+					dur.wait;
 					old = cell;
 				} {
 					"Freeing synth -- things are bad".postln;
