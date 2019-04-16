@@ -12,6 +12,8 @@ this.preProcessor = { arg str;
 };
 //
 
+Fdef.verbose = true;
+
 Fdef(\wavList, { |sub, path|
 
 	var out = ();
@@ -39,7 +41,6 @@ Fdef(\wavList, { |sub, path|
 
 });
 
-
 Fdef(\writeWavList, { |...args|
 	var out = Fdef(\wavList).value(*args);
 	Document.current.selectedString = out.asCompileString.replace("," ",\n");
@@ -47,7 +48,11 @@ Fdef(\writeWavList, { |...args|
 
 Fdef(\resolveAssets, { |obj|
 	var path;
-	assetPath = assetPath ?? { File.realpath(config.assetPath) };
+	//TODO: move from Fdef, or find a way to throw error from within
+	assetPath = assetPath ?? { File.realpath(config.assetPath) } ?? {
+		warn("Couldn't resolve assetPath at %".format(config.assetPath));
+		nil
+	};
 	obj.keysValuesChange { |k, v|
 		path = File.realpath((config.assetPath +/+ v));
 		if (path.isNil) {
