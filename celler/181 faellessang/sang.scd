@@ -12,17 +12,31 @@ SynthDef(\bufPlayerSang, {
 Pdef(\sang,
 	Ppar(9.collect { |i|
 		Pbind(
-			\instrument, \bufPlayer,
-			\index, Pfunc { ~buffers.size.rand; },
-			\freq, Pfunc { |ev|  (i - 4) * (["A1", "A2", "B2", "C#3", "D#3", "E2", "G2"].namecps[ev.index]) },
-			\bufnum, Pfunc { |ev| ~buffers.postln[ev.index] },
+			\instrument, \bufPlayerSang,
+			\index, Plazy { Pwhite(0, ~buffers.keys.size - 1) },
+			\key, Plazy { Pindex(~buffers.keys.asArray, Pkey(\index), inf) },
+			\freq, p { |ev|
+				var map = (
+					sang_a: 110.0,
+					sang_a2: 220.0,
+					sang_e: 164.81377845643,
+					sang_b: 246.94165062806,
+					'sang_c#': 277.18263097687,
+					'sang_d#': 311.12698372208,
+					sang_g: 195.99771799087
+				);
+				loop {
+					ev = map[ev.key].yield;
+				}
+			},
+			\bufnum, Pfunc { |ev| ~buffers[ev.key].postln },
 			\dur, Pfunc { |ev| ev.bufnum.duration },
 			\pan, Pfuncn({ |ev|
 				[-0.5, 0.5].interpolate(4.5).scramble[ev.index]
 			}, inf),
 			\delta, Pkey(\dur) * 0.8,
 			\amp, 0.05,
-		).trace
+		)
 	})
 );
 );
