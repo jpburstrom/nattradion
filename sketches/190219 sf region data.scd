@@ -1,10 +1,10 @@
-a = SoundFile.openRead("/tmp/untitled.wav");
+a = SoundFile.openRead("/tmp/Percussion.wav");
 z = a.readHeaderAsString
 
 (
 var check = (
 	state: \default,
-	out: (),
+	out: (loops: ()),
 	run: { |ev, line|
 		ev[ev.state].value(ev, line);
 	},
@@ -32,10 +32,10 @@ var check = (
 	},
 	marker: { |ev, line|
 		if (line[0].isSpace) {
-			line.trim.findRegexp("[^:]+:\\s{1,2}\\S+\\s+").do { |item|
+			line.trim.findRegexp("[^:]+:\\s+\\S+\\s+").do { |item|
 				var thing = item[1].split($:).collect(_.trim);
 				if (thing[0] == "Pos") {
-					ev.out.pos.add(thing[1]);
+					ev.out.pos.add(thing[1].asInteger);
 				};
 			}
 			// line.split(Char.space).postcs;
@@ -48,17 +48,16 @@ var check = (
 		var data = ev.getSubData(line);
 		if (data[0] == "Loop Count") {
 			ev.out[\loopCount] = data[1].asInt;
-			ev.out[\loops] = ();
 			ev.state = \loop;
 		};
 	},
 	loop: { |ev, line|
 		if (line[0].isSpace) {
 			var loop = ();
-			line.trim.findRegexp("[^:]+:\\s{1,2}\\S+\\s+").do { |item|
+			line.trim.findRegexp("[^:]+:\\s+\\S+\\s+").do { |item|
 				var thing = item[1].split($:).collect(_.trim);
 				if (thing[0] == "Cue ID") {
-					ev.out.loops[thing[1].asSymbol] = loop;
+					ev.out.loops[thing[1].asInteger - 1] = loop;
 				} {
 					loop[thing[0].toLower.asSymbol] = thing[1];
 				}
@@ -72,9 +71,26 @@ var check = (
 	list: { |ev, line|
 		var data = ev.getSubData(line);
 		if (data[0] == "labl") {
-			ev.out.lbl[data[1].asInt - 1] = data[2];
+			ev.out.lbl[data[1].asInt - 1] = data[2].asSymbol;
 		};
-	};
+	},
+
+	getMarkers: { |ev|
+		var loopKeys = ev.out.loops.keys;
+		[ev.out.lbl, ev.out.pos].flop
+		.reject({ |v, i| loopKeys.includes(i) })
+		.flat
+		.asDict
+	},
+
+	getRegions: { |ev|
+		var out = IdentityDictionary();
+		ev.out.loops.keysValuesDo { |index, v|
+			var name = ev.out.lbl[index];
+			out[name] = [v.start.asInteger, v.end.asInteger]
+		};
+		out
+	}
 
 );
 // z.postln;
@@ -83,6 +99,6 @@ z.split(Char.nl).do { |line|
 	check.run(line);
 
 };
-check.out
+check.out.postcs;
+check.getRegions;
 )
-regex
