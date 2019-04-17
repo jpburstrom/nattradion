@@ -3,7 +3,7 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'osammanhängande_harmonik': "038 osammanhängande harmonik/osammanhängande harmonik.wav" 
+		 'osammanhangande_harmonik': "038 osammanhangande harmonik/osammanhangande harmonik.wav" 
 	));
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

@@ -1,6 +1,6 @@
 thisProcess.nowExecutingPath.debug("TODO");
 
-"tolvstämmigt.scd".resolveRelative.load;
+"tolvstammigt.scd".resolveRelative.load;
 
 
 Cell({
