@@ -61,7 +61,8 @@ var path = thisProcess.nowExecutingPath;
 				}
 			});
 			btns.layout.add(nil);
-			list.items = cellList.collect { |cell| cell.metadata[\title] };
+
+			list.items = cellList.collect { |cell| "% %".format(cell.metadata[\number], cell.metadata[\title]) };
 			list.items.postln;
 
 			view.refresh
