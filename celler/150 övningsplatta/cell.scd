@@ -1,6 +1,6 @@
 thisProcess.nowExecutingPath.debug("TODO");
 
-"övningsplatta.scd".resolveRelative.load;
+"övningsplatta.scd".resolveRelative.load;
 
 
 Cell({
