@@ -41,10 +41,6 @@ Fdef(\wavList, { |sub, path|
 
 });
 
-Fdef(\writeWavList, { |...args|
-	var out = Fdef(\wavList).value(*args);
-	Document.current.selectedString = out.asCompileString.replace("," ",\n");
-});
 
 Fdef(\resolveAssets, { |obj|
 	var path;
