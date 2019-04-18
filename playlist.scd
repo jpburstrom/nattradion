@@ -9,9 +9,9 @@ Cell({
 			var cells, cellsCell = currentEnvironment.mother.cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
-			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true };
+			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true }.values.asArray;
 			inf.do {
-				cells.do { |cell|
+				cells.scramble.do { |cell|
 					var wait;
 					cell.load;
 					offset = ((cell.markers[\start] ? 0) / cell.server.sampleRate).max(0);
