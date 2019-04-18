@@ -48,7 +48,7 @@ Pdef(\dteht, Pbind(
 					if ((i + 1) == word.size) {
 						ev.dur = [1, 2, 4].wchoose([3,2,1].normalizeSum);
 					};
-					ev.amp = (i + 1).reciprocal * 0.5;
+					ev.amp = (i + 1).reciprocal;
 					num = ((num + ev.noteAdd) % 12);
 					ev = num.yield;
 				}

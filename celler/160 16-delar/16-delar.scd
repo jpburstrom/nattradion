@@ -11,7 +11,7 @@ SynthDef(\s16, {
 		Env.adsr(\fatk.kr(0.01), \fdecay.kr(0.01), \fsusLevel.kr(0.8), \frel.kr(1.0)).kr(
 			levelScale: 5200, levelBias: 2600), 0.2);
 	snd = snd * Env.adsr(\atk.kr(0.01), \decay.kr(0.3), \susLevel.kr(0.67), \rel.kr(0.1)).ar(2, \gate.kr(1));
-	Out.ar(0, Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
+	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 
 );
@@ -19,12 +19,13 @@ SynthDef(\s16, {
 Pdef(\s16, PmonoArtic(
 	 \s16,
 	\octave, 4,
+	\root, Pstep([-10, 0, -7, 0, 4], [1, 8, 1, 6, 1], inf),
 	\dur, 1/4,
 	\width, Pseries(0, 0.3, 3).repeat(inf),
 	\scale, Scale.harmonicMinor,
 	\pan, Pwhite(-0.1, 0.1),
 	\atk, Pseq([0, 0.001], inf),
-	\amp, Pseq([0.15, 0.08], inf),
+	\amp, Pseq([0.15, 0.08], inf) * 0.5,
 	\decay, 0.1,
 	\legato, Pseq(Array.geom(5, 1, 2).pyramid(5).reciprocal, inf) * 2,
 	\susLevel, 0.98,

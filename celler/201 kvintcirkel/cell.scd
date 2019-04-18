@@ -6,7 +6,7 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 
 	~settings[\reverb] = (
-		time: 0.8,
+		time: 2.8,
 		amp: 0.125
 	);
 

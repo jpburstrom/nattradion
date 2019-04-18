@@ -24,7 +24,7 @@ SynthDef(\rockring_ringmod, { |tempo, baseFreq|
 		* Env.cutoff(10).ar(Done.freeSelf, \gate.kr(1));
 
 
-	Out.ar(\out.kr(0), snd);
+	Out.ar(\out.kr(0), snd * -3.dbamp);
 
 }).add;
 

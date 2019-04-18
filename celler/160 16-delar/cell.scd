@@ -6,10 +6,10 @@ thisProcess.nowExecutingPath.debug("TODO");
 Cell({
 ~settings[\reverb] = (
 		time: 1.2,
-		amp: 0.1
+		amp: 0.2
 	);
 
-	~settings[\tempo] = 100; //TODO dynamic
+	~settings[\tempo] = 110; //TODO dynamic
 	~load = {
 		~settings[\duration] = 80.rrand(120);
 	};

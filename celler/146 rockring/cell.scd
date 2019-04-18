@@ -4,6 +4,11 @@ thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
 
+	~settings[\reverb] = (
+		time: 1.2,
+		amp: 0.04
+	);
+
 	~settings[\numChannels] = 2;
 	~settings[\tempo] = 95; // TODO dynamic tempo
 

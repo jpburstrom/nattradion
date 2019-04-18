@@ -30,7 +30,7 @@ Pdef(\kvint, Ptpar(
 				\decay, Pkey(\series) * 2,
 				\atk, Pexprand(0.0001, 0.1) * Pkey(\decay),
 				\pan, (i * 0.5) - 0.5,
-				\amp, Pseq([0.3, 0.1, 0.09, 0.2, 0.05], inf),
+				\amp, Pseq([0.3, 0.1, 0.09, 0.2, 0.05], inf) * 3,
 				\timingOffset, i * Pwhite(-0.01, 0.01),
 				\freq, Pkey(\series) * baseFreq
 			)
