@@ -11,7 +11,10 @@ Cell({
 
 	~template[\main] = (
 		//TODO: tempo
-		main: #[grazon]
+		main: [\grazon,
+			[\duration, { ~settings[\duration] }];
+		]
 	);
 
 }, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)
+

@@ -20,6 +20,9 @@ SynthDef(\rockring_ringmod, { |tempo, baseFreq|
 	snd = HPF.ar(snd, 50);
 
 	snd = SoftClipper4.ar(snd);
+	snd = snd * Env.linen(0.01, \duration.kr(1), 10).ar(Done.freeSelf)
+		* Env.cutoff(10).ar(Done.freeSelf, \gate.kr(1));
+
 
 	Out.ar(\out.kr(0), snd);
 

@@ -2,15 +2,19 @@ thisProcess.nowExecutingPath.debug("TODO");
 
 "alps.scd".resolveRelative.load;
 
-
-Cell({
+v = Cell({
 
 	~load = {
-		~settings[\duration] = 60.rrand(180);
+		~settings[\duration] = 1
 	};
 
+
 	~template[\main] = (
-		main: [\alps]
+		main: [\alps, \duration, { ~settings[\duration] }]
 	);
 
 }, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)
+
+
+
+

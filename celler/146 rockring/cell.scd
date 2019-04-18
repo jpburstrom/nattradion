@@ -12,7 +12,11 @@ Cell({
 	};
 
 	~template[\main] = (
-		ringmod: [\rockring_ringmod, [\tempo, { ~settings[\tempo] }, \baseFreq, 220]]
+		ringmod: [\rockring_ringmod, [
+			\tempo, { ~settings[\tempo] },
+			\baseFreq, 220,
+			\duration, { ~settings[\duration] }
+		]]
 	);
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

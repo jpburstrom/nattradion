@@ -24,7 +24,9 @@ SynthDef(\alps, {
 
 
 
-	snd = snd * Env.cutoff(20, 1, 4).ar(2, \gate.kr(1));
+	snd = snd * Env.linen(0.01, \duration.kr(1), 20).ar(Done.freeSelf)
+		* Env.cutoff(20).ar(Done.freeSelf, \gate.kr(1));
+
 
 	Out.ar(\out.kr(0), snd);
 

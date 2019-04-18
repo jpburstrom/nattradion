@@ -8,6 +8,8 @@ SynthDef(\grazon, { |tempo|
 	].collect { |num|
 		GrayNoise.ar * LFPulse.ar(num, 0.0, LFNoise2.kr(0.5).range(0.1, 0.3), 0.25, 0.005);
 	};
+	snd = snd * Env.linen(0.01, \duration.kr(1), 0.02).ar(Done.freeSelf)
+	* Env.cutoff(0.02).ar(Done.freeSelf, \gate.kr(1));
 
 	Out.ar(\out.kr(0), Splay.ar(snd, 0.6));
 
