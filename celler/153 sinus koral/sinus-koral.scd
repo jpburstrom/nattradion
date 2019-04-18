@@ -32,8 +32,9 @@ SynthDef(\sinus_koral, {
 
 	snd = lop + hip;
 
+	snd = snd * Env.linen(0.01, \duration.kr(1), 20).ar(Done.freeSelf)
+		* Env.cutoff(20).ar(Done.freeSelf, \gate.kr(1));
 
-	snd = snd * Env.asr(\atk.kr(1), 1, \rel.kr(1), [-4, 4]).ar(2, \gate.kr(1));
 	Out.ar(\out.kr(0), snd);
 
 }).add
