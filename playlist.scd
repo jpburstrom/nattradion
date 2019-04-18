@@ -5,21 +5,21 @@ Cell({
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
+			var prevDur=0, offset;
 			var cells, cellsCell = currentEnvironment.mother.cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
 			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true };
 			cells = cells.select { |cell| cell.settings[\reverb].notNil };
 			inf.do {
-				var prevDur=0, offset;
 				cells.do { |cell|
 					var wait;
 					cell.load;
 					offset = ((cell.markers[\start] ? 0) / cell.server.sampleRate).max(0);
 					wait = ((prevDur - offset) ).wait;
 
-					"seeting reverb".postln;
 					if (cell.settings[\reverb].notNil) {
+						cell.settings[\reverb].postln;
 						cellsCell.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
 						cell.settings[\reverb][\time] !? { |time|
 							cellsCell.set("fx.reverb.time", time);
@@ -48,7 +48,7 @@ Cell({
 	};
 
 	~play = {
-		~routine.play;
+		~routine.play(SystemClock);
 	};
 
 	~stop = {
