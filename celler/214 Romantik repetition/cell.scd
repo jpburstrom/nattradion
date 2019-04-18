@@ -3,6 +3,10 @@ thisProcess.nowExecutingPath.debug("TODO");
 
 
 Cell({
+	~settings[\reverb] = (
+		time: 3,
+		amp: 0.1
+	);
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
 		romantik: "214 Romantik repetition/Romantik repetition.wav"

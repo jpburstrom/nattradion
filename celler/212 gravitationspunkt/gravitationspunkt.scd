@@ -31,7 +31,7 @@ Pdef(\gravity, Pbind(
 	\decay,Pbrown(0.001, 0.01, 0.002),
 	\susLevel, Plprand(0.001, 0.05) * Pkey(\dur).linlin(0.25, 16, 0.1, 1),
 	\pan, Pwhite(-0.5, 0.5).clump(3),
-	\amp, 0.6,
+	\amp, 6,
 	\rel, 5,
 	\root, -4,
 	\scale, Scale.harmonicMinor,

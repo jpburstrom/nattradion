@@ -5,6 +5,11 @@ thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
 
+	~settings[\reverb] = (
+		time: 1,
+		amp: 0.2
+	);
+
 	~settings[\tempo] = 90;
 
 	~load = {

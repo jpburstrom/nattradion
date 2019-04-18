@@ -7,6 +7,10 @@ v = Cell({
 	~load = {
 		~settings[\duration] = 1
 	};
+	~settings[\reverb] = (
+		time: 4,
+		amp: 0.2
+	);
 
 
 	~template[\main] = (

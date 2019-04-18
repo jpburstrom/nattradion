@@ -48,7 +48,8 @@ Cell({
 		~updateTemplate.((
 			group: #[main, fx, level, out],
 			fx: (
-				reverb: [\hall]
+				reverb: [\hall],
+				limiter: [\limiter]
 			)
 		));
 

@@ -35,7 +35,7 @@ Pdef(\sang,
 				[-0.5, 0.5].interpolate(4.5).scramble[ev.index]
 			}, inf),
 			\delta, Pkey(\dur) * 0.8,
-			\amp, 0.05,
+			\amp, 0.4,
 		)
 	})
 );

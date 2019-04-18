@@ -9,6 +9,12 @@ Cell({
 		~settings[\duration] = 30.rrand(60);
 	};
 
+	~settings[\reverb] = (
+		time: 4,
+		amp: 0.05
+	);
+
+
 	~pattern = Pdef(\tolv);
 
 }, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)

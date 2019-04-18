@@ -3,20 +3,20 @@
 # 3. Lägg in i mappen "Celler"
 
 # Title är samma som cellinstruktionerna, t ex "Badboll #3, 15, GLES"
-title: Lokal
+title: Stråk Tråk
 
 # Ditt namn
 composer: Johannes Burström
 
 # En oneliner som beskriver vad du gjort
-description: My studio, starring the coffee brewer 
+description: My studio, starring the coffee brewer
 
 # Datum
 date: 2019-02-08
 
 # Tags = de funktioner som musiken kan ha
 # t ex melody, rhythm, ambience, tonal, atonal...
-tags: 
+tags:
 - noise
 - hum
 - room
