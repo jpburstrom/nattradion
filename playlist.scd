@@ -5,7 +5,7 @@ Cell({
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
-			var prevDur=0, offset;
+			var prevDur=0, offset, endTime, prevCell;
 			var cells, cellsCell = currentEnvironment.mother.cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
@@ -19,7 +19,6 @@ Cell({
 					wait = ((prevDur - offset) ).wait;
 
 					if (cell.settings[\reverb].notNil) {
-						cell.settings[\reverb].postln;
 						cellsCell.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
 						cell.settings[\reverb][\time] !? { |time|
 							cellsCell.set("fx.reverb.time", time);
@@ -36,7 +35,6 @@ Cell({
 					prevDur = ((cell.markers[\end] !? { |x|
 						x / cell.server.sampleRate
 					}) ? cell.settings[\duration].value) - offset;
-
 
 				};
 			}
