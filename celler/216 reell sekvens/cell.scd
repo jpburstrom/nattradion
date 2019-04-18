@@ -1,6 +1,6 @@
 "reell sekvens.scd".loadRelative;
 
-c = Cell({
+Cell({
 
 	~settings[\quant] = 1;
 	~settings[\tempo] = 92;

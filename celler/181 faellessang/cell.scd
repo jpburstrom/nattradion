@@ -1,7 +1,7 @@
 thisProcess.nowExecutingPath.debug("TODO: volume");
 "sang.scd".resolveRelative.load;
 
-c = Cell({
+Cell({
 
 	~load = {
 		~settings[\duration] = 80.rrand(140);
