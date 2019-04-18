@@ -5,6 +5,10 @@ thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
 
+	~load = {
+		~settings[\duration] = 60.rrand(180);
+	};
+
 	~template[\main] = (
 		//TODO: tempo
 		main: #[grazon]
