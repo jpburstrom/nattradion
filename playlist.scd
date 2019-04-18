@@ -10,7 +10,6 @@ Cell({
 			//filter out disabled cells
 			//this is done already on load, but maybe we
 			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true };
-			cells = cells.select { |cell| cell.settings[\reverb].notNil };
 			inf.do {
 				cells.do { |cell|
 					var wait;
