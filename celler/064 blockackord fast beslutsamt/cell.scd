@@ -8,4 +8,9 @@ Cell({
 		 'blockackord_fast_beslutsamt_minus_bas': "064 blockackord fast beslutsamt/blockackord fast beslutsamt MINUS BAS.wav"
 	));
 
+	~load = {
+		currentEnvironment.set("level.main.amp", -9.dbamp);
+	};
+
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+
