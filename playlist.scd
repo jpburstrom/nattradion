@@ -5,40 +5,46 @@ Cell({
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
-			var waitStream = Pexprand(2, 30).asStream;
-			cells
+			var cells, cellsCell = currentEnvironment.mother.cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
-			.reject { |cell| cell.settings[\disabled] == true }
-			.do { |cell|
-				var dur;
-				cell.load;
-				cell.name.postln;
-				dur = cell.settings[\duration];
-				if (dur != 0 and: { dur != inf }) {
-					old !?  { |oc|
-						var clock = oc.settings[\clock] ? TempoClock.default;
-						clock.schedAbs(
-							oc.quant.nextTimeOnGrid(clock), {
-								oc.stop;
-								cell.play;
-						});
-					} ?? { cell.play };
-					dur.wait;
-					old = cell;
-				} {
-					"Freeing synth -- things are bad".postln;
-					cell.freeAll;
+			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true };
+			cells = cells.select { |cell| cell.settings[\reverb].notNil };
+			inf.do {
+				var prevDur=0, offset;
+				cells.do { |cell|
+					var wait;
+					cell.load;
+					offset = ((cell.markers[\start] ? 0) / cell.server.sampleRate).max(0);
+					wait = ((prevDur - offset) ).wait;
+
+					"seeting reverb".postln;
+					if (cell.settings[\reverb].notNil) {
+						cellsCell.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
+						cell.settings[\reverb][\time] !? { |time|
+							cellsCell.set("fx.reverb.time", time);
+						}
+					} {
+						cellsCell.set("fx.reverb.amp", 0);
+					};
+					cell.name.postln;
+
+					//Ignore quant
+					cell.settings[\quant] = 0;
+					cell.play;
+
+					prevDur = ((cell.markers[\end] !? { |x|
+						x / cell.server.sampleRate
+					}) ? cell.settings[\duration].value) - offset;
+
+
 				};
-			};
+			}
 		}.inEnvir);
 	};
 
 	~load = {
 		~routine.reset;
-		cells = currentEnvironment.mother.cells.cells;
-		//Do something here, sort etc;
-		cells = cells.values.asArray.scramble;
 	};
 
 	~play = {

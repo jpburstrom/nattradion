@@ -12,6 +12,19 @@ var path = thisProcess.nowExecutingPath;
 		var makeSlot = { |name|
 			var cell = cellList[0];
 			var playing;
+			var setReverb = {
+
+				"seeting reverb".postln;
+				if (cell.settings[\reverb].notNil) {
+					cells.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
+					cell.settings[\reverb][\time] !? { |time|
+						cells.set("fx.reverb.time", time);
+					}
+				} {
+					cells.set("fx.reverb.amp", 0);
+				}
+
+			};
 			var view = View(content).layout_(HLayout().spacing_(0).margins_(0, 5));
 			var list = ListView(view).action_({ |lv|
 				cell = cellList[lv.value];
@@ -19,6 +32,7 @@ var path = thisProcess.nowExecutingPath;
 					playing.freeAll;
 					cells.reloadCell(cell);
 					playing = cell.play;
+					setReverb.value;
 				};
 				fork {
 					cell.wait;
@@ -29,12 +43,16 @@ var path = thisProcess.nowExecutingPath;
 			});
 			var btns = View(view).layout_(VLayout().spacing_(0).margins_([10, 0]));
 			var playBtn	= Button(btns).states_([["Stopped"], ["Playing"]]).action_({ |btn|
+				if (cells.isPlaying.not) {
+					cells.play;
+				};
 				if (btn.value == 0) {
 					cell.freeAll;
 				} {
 					if (playing.isPlaying) { playing.freeAll } ;
 					cells.reloadCell(cell);
 					playing = cell.play;
+					setReverb.value;
 				};
 			});
 

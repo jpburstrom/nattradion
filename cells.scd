@@ -48,7 +48,7 @@ Cell({
 		~updateTemplate.((
 			group: #[main, fx, level, out],
 			fx: (
-				// reverb: [`{ NHHall.ar(In.ar(0, 2), \time.kr(0.1)) } ]
+				reverb: [\hall]
 			)
 		));
 
