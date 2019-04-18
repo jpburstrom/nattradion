@@ -49,7 +49,7 @@ Cell({
 			group: #[main, fx, level, out],
 			fx: (
 				reverb: [\hall],
-				limiter: [\limiter]
+				limiter: [\limiter, [\preamp, 9.dbamp]]
 			)
 		));
 
