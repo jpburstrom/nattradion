@@ -25,7 +25,7 @@ Pdef(\enSkala, Pbind(
 	\test, Pfunc { |ev| ev.notScale.name; ev.root + ev.scale.degrees },
 	\degClump, Pstep([2,1], 7, inf),
 	\degree, Pclump(Pkey(\degClump), Place([(0..3).reverse, (1..4), (3..8)].reverse, inf)),
-	\amp, Place([0.3, [0.05, 0.1], [0.3, 0.05]] * 4, inf),
+	\amp, Place([0.3, [0.05, 0.1], [0.3, 0.05]], inf),
 	\dur, Place([[0.25, 0.5], [0.375, 0.125], [0.125, 0.375, 0.5]], inf)
 ))
 )
