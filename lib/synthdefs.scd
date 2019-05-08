@@ -6,6 +6,6 @@ SynthDef(\hall, {
 SynthDef(\limiter, {
 	var snd = In.ar(\out.kr(0), 2);
 	snd = snd * \preamp.kr(1);
-	Limiter.ar(snd, 0.99);
+	snd = Limiter.ar(snd, 0.99);
 	ReplaceOut.ar(\out.kr, snd);
 }).add
