@@ -51,8 +51,8 @@ Cell({
 		~updateTemplate.((
 			group: #[main, fx, level, out],
 			fx: [
+				limiter: [\limiter, [\preamp, 9.dbamp]],
 				reverb: [\hall],
-				limiter: [\limiter, [\preamp, 9.dbamp]]
 			]
 		));
 
