@@ -2,6 +2,8 @@ Cell({
 
 	var cells;
 
+	~transitions = "lib/transitions.scd".resolveRelative.load;
+
 	~setReverb = { |cell|
 		var mom = cell.mother;
 		if (cell.settings[\reverb].notNil) {
@@ -17,31 +19,44 @@ Cell({
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
-			var prevDur=0, offset, endTime, prevCell;
-			var cells, cellsCell = currentEnvironment.mother.cells;
+			var prevDur=0.2, offset, endTime, prevCell;
+			var cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
-			cells = cellsCell.cells.reject { |cell| cell.settings[\disabled] == true }.values.asArray;
+			cells = currentEnvironment.mother.cells.cells.reject { |cell| cell.settings[\disabled] == true }.values.asArray;
+			Cell.debug = true;
 			inf.do {
 				cells.scramble.do { |cell|
-					var wait;
 					cell.load;
-					offset = ((cell.markers[\start] ? 0) / cell.server.sampleRate).max(0);
-					wait = ((prevDur - offset) ).wait;
+
+					if (prevCell.notNil) {
+						//Wait and transit
+						~transitions.debug.chooseTransition(prevCell, cell);
+					} {
+						cell.play;
+					};
 
 					~setReverb.(cell);
 
-					//Ignore quant
-					cell.settings[\quant] = 0;
-					cell.play;
+					~postDebugOutput.(cell);
 
-					prevDur = ((cell.markers[\end] !? { |x|
-						x / cell.server.sampleRate
-					}) ? cell.settings[\duration].value) - offset;
+					prevCell = cell;
 
 				};
 			}
 		}.inEnvir);
+	};
+
+	~postDebugOutput = { |cell|
+		cell.getDuration.debug(cell.name);
+		fork {
+			var i = 10;
+			i.do {
+				".".post;
+				(cell.getDuration / i).wait;
+			};
+			" Done.".postln;
+		};
 	};
 
 	~load = {
