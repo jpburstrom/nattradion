@@ -2,6 +2,18 @@ Cell({
 
 	var cells;
 
+	~setReverb = { |cell|
+		var mom = cell.mother;
+		if (cell.settings[\reverb].notNil) {
+			mom.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
+			cell.settings[\reverb][\time] !? { |time|
+				mom.set("fx.reverb.time", time);
+			}
+		} {
+			mom.set("fx.reverb.amp", 0);
+		};
+	};
+
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
@@ -17,15 +29,7 @@ Cell({
 					offset = ((cell.markers[\start] ? 0) / cell.server.sampleRate).max(0);
 					wait = ((prevDur - offset) ).wait;
 
-					if (cell.settings[\reverb].notNil) {
-						cellsCell.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
-						cell.settings[\reverb][\time] !? { |time|
-							cellsCell.set("fx.reverb.time", time);
-						}
-					} {
-						cellsCell.set("fx.reverb.amp", 0);
-					};
-					cell.name.postln;
+					~setReverb.(cell);
 
 					//Ignore quant
 					cell.settings[\quant] = 0;
