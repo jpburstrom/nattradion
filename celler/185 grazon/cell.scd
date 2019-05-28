@@ -17,4 +17,3 @@ Cell({
 	);
 
 }, \synth).name_(PathName(thisProcess.nowExecutingPath).folderName)
-

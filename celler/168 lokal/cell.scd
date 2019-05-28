@@ -8,5 +8,5 @@ Cell({
 
 
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName);
 // .set("level.main.amp", 1.5)
