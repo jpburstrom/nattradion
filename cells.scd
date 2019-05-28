@@ -43,14 +43,17 @@ Cell({
 		~loadCellFromPath.(path);
 	};
 
+	//Some cell code sets tempo in various ways, let's reset that
+	TempoClock.tempo = 1;
+
 	~init = {
 
 		~updateTemplate.((
 			group: #[main, fx, level, out],
-			fx: (
+			fx: [
 				reverb: [\hall],
 				limiter: [\limiter, [\preamp, 9.dbamp]]
-			)
+			]
 		));
 
 	};
