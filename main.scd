@@ -12,6 +12,7 @@
 
 	~load = {
 		~cells.play; //Set up routing
+		~playlist.load;
 	};
 
 	~play = {
