@@ -187,8 +187,9 @@ Cell({
 		~routine.stop;
 	};
 
-	//Things free themselves in other ways
 	~freeAll = {
+		~friends.clearAll;
+		~transitions.clearAll;
 		"free".postln;
 	};
 
