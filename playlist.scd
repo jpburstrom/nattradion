@@ -101,9 +101,8 @@ Cell({
 		};
 	};
 
+	//Create the playlist routine on init
 	~init = {
-
-
 		~routine = Routine({
 			var i = 0, old;
 			var prevDur=0.2, offset, endTime, prevCell;
@@ -146,8 +145,11 @@ Cell({
 		};
 	};
 
+	//Load cells
 	~load = {
 		~routine.reset;
+		~friends.clearAll;
+		~transitions.clearAll;
 
 		//Convert dict of cells to an array
 		~cells = currentEnvironment.mother !? { |m| m[\cells].cells.values.asArray };
@@ -155,6 +157,8 @@ Cell({
 		~cells.do { |cell|
 			~friends.checkAddCell(cell, \isFriend);
 			~transitions.checkAddCell(cell);
+
+			cell.friendFilter = currentEnvironment.friendFilterFactory(cell);
 		};
 
 
