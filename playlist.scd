@@ -106,6 +106,7 @@ Cell({
 		~routine = Routine({
 			var i = 0, old;
 			var prevDur=0.2, offset, endTime, prevCell;
+			var friend;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
 
@@ -117,8 +118,22 @@ Cell({
 					if (prevCell.notNil) {
 						//Wait and transit
 						~transitions.chooseTransition(prevCell, cell);
-						//TODO: transitions should maybe
+
 					} {
+						// Pick a friend from current list of friends,
+						// According to cell's friendFilter
+						if (friend.isPlaying.not) {
+							friend = ~friends.takeCell(cell[\friendFilter]);
+							friend !? {
+								// Pass a reference to cell
+								// If we want any metadata (tempo etc)
+								friend.friend = cell;
+								friend.play;
+							}
+						};
+						// Pass a reference to cell
+						// If we want any metadata (tempo etc)
+						cell.friend = friend; //can be nil
 						cell.play;
 					};
 
