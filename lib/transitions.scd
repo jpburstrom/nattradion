@@ -13,6 +13,11 @@ var transitions = (
 		self.bridges.checkAddCell(cell, \isBridge);
 	},
 
+	clearAll: { |self|
+		self.oneshots.clearAll;
+		self.bridges.clearAll;
+	},
+
 	getFadeBounds: { |self, from, to|
 		//Set max fade duration to 1/3 of either cell
 		// var fadeMax = from.getDuration.min(to.getDuration) * 0.33;
