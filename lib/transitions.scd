@@ -1,21 +1,16 @@
 //Library of transitions
 var transitions = (
+
+	oneshots: "cellBag.scd".loadRelative[0],
+	bridges: "cellBag.scd".loadRelative[0],
+
 	settings: (
 		fadeBounds: [5.0, 20]
 	),
 
-	template: (
-		//FIXME
-		bridge: Bag(),
-		oneshot: Bag[2,3,4],
-	),
-
-	//take an item from a template + reset to template if urn is empty
-	pick: { |self, type|
-		if (self[type].isNil or: { self[type].isEmpty.debug }) {
-			self[type] = self.template[type].deepCopy;
-		};
-		self[type].take
+	checkAddCell: { |self, cell|
+		self.oneshots.checkAddCell(cell, \isOneshot);
+		self.bridges.checkAddCell(cell, \isBridge);
 	},
 
 	getFadeBounds: { |self, from, to|
