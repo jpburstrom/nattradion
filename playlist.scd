@@ -4,6 +4,9 @@ Cell({
 
 	~transitions = "lib/transitions.scd".resolveRelative.load;
 
+	//cellBag is a bag-like data structure
+	~friends = "lib/cellBag.scd".loadRelative[0];
+
 	~setReverb = { |cell|
 		var mom = cell.mother;
 		if (cell.settings[\reverb].notNil) {
@@ -17,21 +20,23 @@ Cell({
 	};
 
 	~init = {
+
+
 		~routine = Routine({
 			var i = 0, old;
 			var prevDur=0.2, offset, endTime, prevCell;
-			var cells;
 			//filter out disabled cells
 			//this is done already on load, but maybe we
-			cells = currentEnvironment.mother.cells.cells.reject { |cell| cell.settings[\disabled] == true }.values.asArray;
+
 			Cell.debug = true;
 			inf.do {
-				cells.scramble.do { |cell|
+				~cells.scramble.do { |cell|
 					cell.load;
 
 					if (prevCell.notNil) {
 						//Wait and transit
-						~transitions.debug.chooseTransition(prevCell, cell);
+						~transitions.chooseTransition(prevCell, cell);
+						//TODO: transitions should maybe
 					} {
 						cell.play;
 					};
@@ -61,6 +66,16 @@ Cell({
 
 	~load = {
 		~routine.reset;
+
+		//Convert dict of cells to an array
+		~cells = currentEnvironment.mother !? { |m| m[\cells].cells.values.asArray };
+
+		~cells.do { |cell|
+			~friends.checkAddCell(cell, \isFriend);
+			~transitions.checkAddCell(cell);
+		};
+
+
 	};
 
 	~play = {
