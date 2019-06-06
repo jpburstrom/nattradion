@@ -2,6 +2,8 @@ Cell({
 
 	~template[\cells] = IdentityDictionary();
 
+	~disabledCells = Set();
+
 	~loadCellFromPath = { |path|
 		var cell, num;
 		var dir = path.dirname;
@@ -35,6 +37,7 @@ Cell({
 			}
 		} {
 			"Cell % disabled".format(cell.name).postln;
+			~disabledCells.add(cell);
 		}
 	};
 
