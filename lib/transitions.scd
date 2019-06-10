@@ -88,10 +88,10 @@ var transitions = (
 		},
 
 
-		oneshot: { |self, from, to|
-
+		oneshot: { |self, from, to, oneshot|
 			var endTime;
-			var oneshot = self.oneshots.takeCell;
+
+			oneshot ?? { oneshot = self.oneshots.takeCell };
 
 			//Spawn oneshot separately
 			self.spawn({
@@ -112,10 +112,12 @@ var transitions = (
 		},
 
 		bridge: { |self, from, to|
-			var bridge = self.bridges.takeCell;
+			var syncPoint;
+
+			bridge ?? { bridge = self.bridges.takeCell };
 
 			//See if we have a end marker in the bridge, otherwise
-			var syncPoint = bridge.getMarkerTime(\end, false) ?? {
+			syncPoint = bridge.getMarkerTime(\end, false) ?? {
 				bridge.settings[\duration] * 0.5;
 			};
 
