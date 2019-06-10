@@ -49,12 +49,13 @@ var transitions = (
 		});
 	},
 
-	spawn: { |func|
+	spawn: { |self, func|
 		var routine = fork {
 			func.value;
 			self.forks.remove(routine);
-		}
-	}
+		};
+		routine;
+	},
 
 	transitions: (
 
@@ -99,7 +100,7 @@ var transitions = (
 			});
 
 			//Calculate oneshot start->end duration, 0 by default
-			endTime = (oneshot.getMarkerTime(\end, false) ? 0) - oneShot.getMarkerTime(\start);
+			endTime = (oneshot.getMarkerTime(\end, false) ? 0) - oneshot.getMarkerTime(\start);
 			//And subtract start marker
 			endTime = endTime - to.timeToPos(\start);
 
