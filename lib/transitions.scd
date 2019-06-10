@@ -4,6 +4,9 @@ var transitions = (
 	oneshots: "cellBag.scd".loadRelative[0],
 	bridges: "cellBag.scd".loadRelative[0],
 
+	// Keep track of spawned processes
+	forks: Set(),
+
 	settings: (
 		fadeBounds: [5.0, 20]
 	),
@@ -16,6 +19,11 @@ var transitions = (
 	clearAll: { |self|
 		self.oneshots.clearAll;
 		self.bridges.clearAll;
+	},
+
+	freeAll: { |self|
+		self.forks.do(_.stop);
+		self.forks.clear;
 	},
 
 	getFadeBounds: { |self, from, to|
@@ -36,9 +44,17 @@ var transitions = (
 
 	chooseTransition: { |self, from, to|
 		var transit = #[cut, fadeIn, fadeOut, xfade].choose;
-		transit.debug("Transition");
-		self.transitions[transit].value(self, from, to);
+		self.spawn({
+			self.transitions[transit].value(self, from, to)
+		});
 	},
+
+	spawn: { |func|
+		var routine = fork {
+			func.value;
+			self.forks.remove(routine);
+		}
+	}
 
 	transitions: (
 
