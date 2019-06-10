@@ -74,7 +74,6 @@ var transitions = (
 
 		fadeOut: { |self, from, to|
 			var time = self.getFadeTime(from, to);
-			//FIXME: calculate time until end marker
 			from.waitForPos(\end, (time + to.getMarkerTime(\start)).neg);
 			from.fadeOut(time);
 			to.play(nil, from.getQuant, from.clock);
@@ -82,7 +81,6 @@ var transitions = (
 
 		xfade: { |self, from, to|
 			var time = self.getFadeTime(from, to);
-			//FIXME: calculate time until end marker
 			from.waitForPos(\end, time.neg);
 			from.fadeOut(time);
 			to.fadeIn(time);
@@ -91,30 +89,45 @@ var transitions = (
 
 		oneshot: { |self, from, to|
 
-			//TODO: How does cell know it's a oneshot?
-			//TODO: Don't pick oneshot derived from (from|to)
-			var oneshot = self.pick(\oneshot);
-			from.settings[\duration].wait;
-			oneshot.play;
-			//Oneshot may have a duration, ie time until 'end' marker,
-			oneshot.settings[\duration].wait;
+			var endTime;
+			var oneshot = self.oneshots.takeCell;
+
+			//Spawn oneshot separately
+			self.spawn({
+				from.waitForPos(\end, oneshot.getMarkerTime(\start).neg);
+				oneshot.play;
+			});
+
+			//Calculate oneshot start->end duration, 0 by default
+			endTime = (oneshot.getMarkerTime(\end, false) ? 0) - oneShot.getMarkerTime(\start);
+			//And subtract start marker
+			endTime = endTime - to.timeToPos(\start);
+
+			//Now endTime is an offset, which is negative if to[\start] is
+			//greater than oneshot duration. Use that as offset to the
+			//waiting time.
+			from.waitForPos(\end, endTime);
 			to.play;
 		},
 
 		bridge: { |self, from, to|
-			//TODO: How does cell know it's a bridge?
-			//TODO: Don't pick bridge derived from (from|to)
-			var bridge = self.pick(\bridge);
-			//TODO: here we're calculating transition point based on bridgeDuration / 2.
-			//Maybe it should be handled by bridge instead?
-			var halftime = bridge.settings[\duration] * 0.5;
-			(from.settings[\duration] - halftime).wait;
-			bridge.play;
-			halftime.wait;
-			self.cut(from, to);
+			var bridge = self.bridges.takeCell;
+
+			//See if we have a end marker in the bridge, otherwise
+			var syncPoint = bridge.getMarkerTime(\end, false) ?? {
+				bridge.settings[\duration] * 0.5;
+			};
+
+			//Spawn bridge separately
+			self.spawn({
+				from.waitForPos(\end, syncPoint.neg);
+			});
+
+			//Play syncing from.end with to.start
+			self.transitions.cut.value(self, from, to);
 		},
 
-	),
+	)
 );
 
 transitions
