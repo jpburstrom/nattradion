@@ -27,10 +27,9 @@ var transitions = (
 
 
 	chooseTransition: { |self, from, to|
+		//XXX temporary -- should choose between all
 		var transit = #[cut, fadeIn, fadeOut, xfade].choose;
-		self.spawn({
-			self.transitions[transit].value(self.transitions, from, to)
-		});
+		self.transitions[transit].run(from, to);
 	},
 
 	testTransition: { |self, from, to, type, mask|
