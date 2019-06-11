@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "grazon.scd".resolveRelative.load;
 

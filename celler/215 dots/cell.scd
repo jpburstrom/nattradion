@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "dots.scd".resolveRelative.load;
 

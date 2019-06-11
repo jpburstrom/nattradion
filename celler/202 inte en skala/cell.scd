@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "inte en skala.scd".resolveRelative.load;
 

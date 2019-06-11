@@ -1,4 +1,4 @@
-var config = "../config.scd".loadRelative[0].postln;
+var config = "../config.scd".loadRelative[0];
 var assetPath;
 
 // Interpreter preprocessor, allowing an "/*EOF*/" string in a document

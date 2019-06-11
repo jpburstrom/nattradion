@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO: volume");
 "sang.scd".resolveRelative.load;
 
 Cell({

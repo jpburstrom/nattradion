@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 Cell({
 	var files = Fdef(\resolveAssets).value((

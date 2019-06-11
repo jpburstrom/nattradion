@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "rockring.scd".resolveRelative.load;
 

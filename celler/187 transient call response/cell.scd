@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "transient.scd".resolveRelative.load;
 

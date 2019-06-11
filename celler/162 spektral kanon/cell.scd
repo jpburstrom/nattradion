@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "spektral kanon.scd".resolveRelative.load;
 

@@ -17,9 +17,6 @@ SynthDef(\sinus_koral, {
 
 	snd = { SinOsc.ar(notes * LFNoise1.kr(0.1).range(0.999, 1.001), Rand(0, 2pi)) * LFNoise2.kr(0.1).exprange(0.25, 1)  }.dup(48);
 	snd = snd.flatten;
-	snd.size.postln;
-
-
 
 	snd = Splay.ar(snd);
 	snd = SoftClipAmp8.ar(snd, 0.5, 0.5.reciprocal) * 0.1;

@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "gravitationspunkt.scd".resolveRelative.load;
 

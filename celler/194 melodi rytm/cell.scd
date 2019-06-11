@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "melodi-rytm.scd".resolveRelative.load;
 

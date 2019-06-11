@@ -1,5 +1,4 @@
 
-thisProcess.nowExecutingPath.debug("TODO");
 
 
 Cell({

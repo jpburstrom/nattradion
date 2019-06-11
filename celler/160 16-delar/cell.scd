@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "16-delar.scd".resolveRelative.load;
 

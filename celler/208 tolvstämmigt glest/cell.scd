@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "tolvstammigt.scd".resolveRelative.load;
 

@@ -1,4 +1,3 @@
-thisProcess.nowExecutingPath.debug("TODO");
 
 "sinus-koral.scd".resolveRelative.load;
 

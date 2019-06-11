@@ -1,5 +1,3 @@
-thisProcess.nowExecutingPath.debug("Disabled");
-
 Cell({
 
 	~settings[\disabled] = true;
