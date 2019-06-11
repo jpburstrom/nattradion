@@ -5,7 +5,9 @@ var printTemplate = { |obj|
 	hasFriend:
 		"hasFriend: (
 		prob: %,
-		filter: \"%\"
+		filter: \"%\",
+		modFunc: { |friend|
+		}
 	)",
 	isFriend:
 		"isFriend: (
