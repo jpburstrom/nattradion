@@ -10,6 +10,11 @@ var transitions = (
 		self.bridges.checkAddCell(cell, \isBridge);
 	},
 
+	removeCell: { |self, cell|
+		self.oneshots.removeCell(cell);
+		self.bridges.removeCell(cell);
+	},
+
 	clearAll: { |self|
 		self.oneshots.clearAll;
 		self.bridges.clearAll;
@@ -213,5 +218,3 @@ var transitions = (
 );
 
 transitions;
-
-~transitions = transitions;

@@ -43,6 +43,10 @@ var out = (
 	cells: { |self|
 		self.current
 	},
+	removeCell: { |self, cell|
+		self.orig.remove(cell);
+		self.current.remove(cell);
+	},
 	takeCell: { |self, filter|
 		var cells;
 		if (self.current.isEmpty) {
