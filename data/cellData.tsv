@@ -1,0 +1,96 @@
+name	plays	friendProbability	friendFilter	friends	bridges	oneshots	fade	xfade	cut	fade	xfade	cut
+001 percussion	1	0.20		0	1	0	x	x	x	x	x	x
+003 Vokal	1	0.00		0	0	0	x	x		x	x	
+006 Trumsolo	1	0.00		1	0	0	x	x	x	x	x	x
+011 rytmebox x2	1	1.00	ambience, noise	0	0	0	x	x	x	x	x	x
+015 Ur-rytmen	2	0.50	ambience, noise	1	1	0	x	x	x	x	x	x
+016 shuffle	1											
+017 trio	1	0.00		0	0	0	x	x	x	x	x	x
+023 Tretakt treklang	1	0.00		0	0	0	x	x	x	x	x	x
+026 små intervall	1	0.00		0	0	0	x	x	x	x	x	x
+027 100 takter	1	0.70	75% #187	0	0	0	x	x	x	x	x	x
+028 happy minor	1	0.50	ambience, noise	0	0	0	x	x	x	x	x	x
+031 virtuos extrem	1	0.00		0	0	0			x			x
+032 Svarta tangenter	1	0.35		1	0	0	x	x	x	x	x	x
+036 Combat	1	0.00		0	1	0			x	x	x	x
+038 osammanhängande harmonik	1	1.00		1	0	0	x	x	x	x	x	
+039 trestegsraket	1	0.50	ambience, noise	1	0	0			x			x
+034 lång	1	0.50	ambience, noise, metronom	0	0	0	x	x	x	x	x	x
+040 Refräng	1	0.75		0	0	2						
+043 Rumbatakt	1											
+047 Spår av godhet	1											
+050 Badboll gles	1	0.00		0	0	0			x			x
+051 Badboll 1 snabb	1	0.00		1	0	0			x			x
+055 Blues deconstructed	1	0.80							x			x
+056 kvint, liten ters, oktav	1	1.00	ambience, noise	0	0	3			x			x
+058 en ton upp	2	0.70			0	0			x			x
+060 omstart	1	0.00		0	0	0			x			x
+062 Für elise	1	0.80					x	x	x	x	x	x
+064 Blockackord	1	0.00		0	0	0			x			x
+065 1 12 123	1											
+067 Orgelpunkt	1	0.00		0	0	0	x	x	x	x	x	x
+071 332	1	0.75	atonal, ambience, noise	1	0	0	x	x	x	x	x	x
+072 kort loop 3 sek	1	0.30		1	0	1			x			x
+073 midiflute	1	0.50	minimalistic, rythmic	5	1		x	x	x	x	x	x
+074 fm	1	0.50	minimalistic, rythmic	5	1		x	x	x	x	x	x
+077 tuba	1	0.00		0	0				x			x
+078 lindha	1	0.00		0	0				x			x
+079 hemmabyggda instrument	1	0.50		3	1				x			x
+080 cittra andetag	1	0.00		2	1		x	x	x			x
+081 under 50 hz	1	0.50		5	1		x	x	x	x	x	x
+089 stinger	1	0.00		0	1	1			x			x
+090 tetrachord	1	0.50		3	1	1	x	x	x	x	x	x
+091 musik för 2 toner g	1	0.50	atonal, ambience, noise	0	1	0	x	x	x			x
+093 dålig täckning	1	0.00		3	1	0	x	x	x	x	x	x
+094 mellemösten	1	0.20	bpm 120 bpm 60 eller ambience, noise	3	1		x	x		x	x	
+097 pause	1	0.00		0	0	1			x			x
+098 spelglädje	1	1.00	ambience, noise	2	1		x	x	x	x	x	x
+099 valsång vals va	1	0.00		0	15	0			x			x
+100 lyd der drejer runt	1	0.00		1	1				x			x
+101 svagt flow	1	0.00		0	1	0			x			x
+104 syntetisk elastisk	1	0.00		0	1	0			x			x
+107 frontalkrock	1	0.00	eller 100% men kun med LOKAL	0	0	14			x			x
+108 ugens dyrelyd	1	0.00		4	1				x			x
+109 mellanrum	1	0.00		0	0	0			x	x	x	
+110 cdur	1	0.00		0	0	0	x	x	x	x	x	x
+111 Perc kaos	1	0.80	atonal, ambience, noise	1	1	20	x	x	x	x	x	x
+117 hiphop kun reverb	1	0.50	minimalistic, rythmic	5	1	0	x	x	x	x	x	x
+120 feed forward	1	0.20		2	1		x	x	x	x	x	x
+121 Badboll 4	1	0.20	Nummer #145	1	1	0	x	x	x	x	x	x
+126 en gammal hit helt annorlunda	1	0.00		0	1	0			x			x
+127 intervension	1	0.20	Nummer #190	0	0	0			x			x
+128 höjning	1	0.00		5	1	0	x	x	x	x	x	x
+129 kort tydlig	1	0.00		0	0	1			x			x
+130 matematik	1	0.00		3	1	0			x			x
+138 melodi från talad text	1	0.00		0	0	0			x			x
+145 orgel	1		+ #121									
+146 rockring	1											
+148 Legetøjsinstrument	1			3								
+149 Metronom	1											
+150 övningsplatta	1											
+151 brus med bas	1											
+152 stråk tråk	1											
+153 sinus koral	1											
+155 brass i 5 sek	1		mås från #091									
+160 16-delar	1											
+162 spektral kanon	1											
+166 klaver vrangen ud	1											
+168 Lokal	1		Spela det som spelades för 10 minuter sedan svagt i bakgrund									
+171 alperna	1											
+175 exotisk plats	1											
+181 fællessang	1											
+182 allt	1											
+185 gråzon	1											
+187 Transient call response	1		#027									
+190 dteht	1		#127									
+192 medresonanser	1											
+194 melodi rytm	1											
+201 kvintcirkel	1											
+202 inte en skala	1											
+203 en gammal grej	1											
+208 tolvstämmigt glest	1		fiol #100									
+209 polychord	1											
+212 gravitationspunkt	1											
+214 romantik repetition	1											
+215 dots	1											
+216 reell sekvens	1											
