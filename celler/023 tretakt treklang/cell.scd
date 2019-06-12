@@ -1,6 +1,14 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
     //TODO: Choose
 
 	~template[\buffer] = Fdef(\resolveAssets).value((

@@ -1,6 +1,19 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			isBridge: (
+				count: 15.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value(( 
         1: "099 valsang vals va/Clips/099 valsang vals va 1.wav", 
         10: "099 valsang vals va/Clips/099 valsang vals va 10.wav" ,

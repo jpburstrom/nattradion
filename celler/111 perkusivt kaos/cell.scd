@@ -1,6 +1,35 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.8,
+				filter: "atonal, ambience, noise",
+				modFunc: { |friend|
+				}
+			),
+			isFriend: (
+				count: 1.0,
+				modFunc: { |count|
+				}
+			),
+			isBridge: (
+				count: 1.0,
+				modFunc: { |count|
+				};
+			),
+			isOneshot: (
+				count: 20.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
         '111_perkussivt_kaos_slice_19': "111 perkusivt kaos/Slice/111 perkussivt kaos slice 19.wav",

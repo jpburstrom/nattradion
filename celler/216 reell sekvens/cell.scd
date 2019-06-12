@@ -2,6 +2,30 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.25,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			isFriend: (
+				count: 2.0,
+				modFunc: { |count|
+				}
+			),
+			isOneshot: (
+				count: 1.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~settings[\quant] = 1;
 	~settings[\tempo] = 92;
 	~settings[\reverb] = (

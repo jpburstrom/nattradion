@@ -3,6 +3,25 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.1,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			isBridge: (
+				count: 1.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~load = {
 		~settings[\duration] = 60.rrand(130);
 	};

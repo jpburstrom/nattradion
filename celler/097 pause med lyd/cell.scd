@@ -1,6 +1,19 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			isOneshot: (
+				count: 1.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 'qarin_2.stemme': "097 pause med lyd/Qarin 2.stemme.wav",

@@ -4,6 +4,20 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.4,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~settings[\reverb] = (
 		time: 1,
 		amp: 0.2

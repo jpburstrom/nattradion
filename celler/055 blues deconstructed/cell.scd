@@ -1,6 +1,20 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.8,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
     ~template[\buffer] = Fdef(\resolveAssets).value((
         'blues_deconstructed_harmony': "055 blues deconstructed/BLUES DECONSTRUCTED/blues deconstructed harmony.wav",
         //'blues_deconstructed': "055 blues deconstructed/blues deconstructed.wav",

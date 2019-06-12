@@ -1,6 +1,19 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			isOneshot: (
+				count: 14.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 '107_frontalkrock_10': "107 frontalkrock/Clips/107 frontalkrock 10.wav",

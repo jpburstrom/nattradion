@@ -1,6 +1,14 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
 		 'virtuos_extrem_gtr': "031 virtuos extrem/virtuos stems/virtuos extrem gtr.wav",
 		 'virtuos_extrem_drums': "031 virtuos extrem/virtuos stems/virtuos extrem drums.wav",

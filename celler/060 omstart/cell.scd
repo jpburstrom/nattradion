@@ -1,6 +1,14 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 'omstart_drums': "060 omstart/omstart stems/omstart drums.wav",

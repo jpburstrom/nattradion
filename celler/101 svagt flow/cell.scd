@@ -1,6 +1,19 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			isBridge: (
+				count: 1.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
     //TODO choose
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*

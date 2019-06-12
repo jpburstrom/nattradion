@@ -3,6 +3,20 @@
 
 
 Cell({
+
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.25,
+				filter: "melodic, rubato",
+				modFunc: { |friend|
+				}
+			),
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
 ~settings[\reverb] = (
 		time: 2,
 		amp: 0.1

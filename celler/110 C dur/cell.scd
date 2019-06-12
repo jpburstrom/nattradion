@@ -1,6 +1,14 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
 		 '110_c_dur_casio_trumpet_stemme': "110 C dur/STEMS/110 C dur Casio trumpet stemme.wav",
 		 '110_c_dur_tuba': "110 C dur/STEMS/110 C dur Tuba.wav",

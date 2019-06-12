@@ -3,6 +3,20 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.8,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 'fur_elise_piano': "062 für elise baklänges/stems/fur elise piano.wav",

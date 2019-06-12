@@ -1,6 +1,25 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.75,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			isOneshot: (
+				count: 2.0,
+				modFunc: { |count|
+				};
+			),
+			transitions: [\cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 '040_refräng_percussion': "040 refräng/refräng stems/040 refräng percussion.wav",

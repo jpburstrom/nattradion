@@ -1,6 +1,25 @@
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			hasFriend: (
+				prob: 0.35,
+				filter: "",
+				modFunc: { |friend|
+				}
+			),
+			isFriend: (
+				count: 1.0,
+				modFunc: { |count|
+				}
+			),
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
 		 'svarta_tangenter-vita_tangenter_trummor': "032 svarta tangenter vita tangenter/svarta tangenter stems/svarta tangenter-vita tangenter trummor.wav",

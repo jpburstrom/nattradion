@@ -11,6 +11,14 @@ Ndef(\rev, { NHHall.ar(In.ar(0, 2), 1.5) * 0.2 }).play
 
 Cell({
 
+//tsv
+	~init = {
+		~updateSettings.((
+			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
+		));
+	};
+//end tsv
+
 	~template[\buffer] = Fdef(\resolveAssets).value((
 		 'trio': "017 trio/trio.wav"
 	));
