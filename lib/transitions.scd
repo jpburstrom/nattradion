@@ -25,11 +25,26 @@ var transitions = (
 		self.transitions.forks.clear;
 	},
 
+	init: { |self|
+		self.oneshots.init;
+		self.bridges.init;
+	},
 
-	chooseTransition: { |self, from, to|
-		//XXX temporary -- should choose between all
-		var transit = #[cut, fadeIn, fadeOut, xfade].choose;
-		self.transitions[transit].run(from, to);
+	chooseTransition: { |self, from, to, type, mask|
+		type = type ?? { self.transitions.keys.choose };
+		type = #[cut, fadeIn, fadeOut, xfade].choose; //TMP
+		fork { 5.wait; type.debug("Next transition");
+			from.timeToPos(\end).debug("to timetopos end");
+		};
+		type.switch(
+			\oneshot, {
+				mask = mask ?? { mask = self.oneshots.takeCell };
+			},
+			\bridge, {
+				mask = mask ?? { mask = self.bridges.takeCell };
+			}
+		);
+		self.transitions[type].run(from, to, mask);
 	},
 
 	testTransition: { |self, from, to, type, mask|
@@ -46,14 +61,21 @@ var transitions = (
 		);
 
 
-		fork {
+
+		forkIfNeeded {
 			from.load;
 			to.load;
+			from.duration.debug("From duration");
 			mask !? (_.load);
-			transition.calc(from, to, mask).postln;
-			from.play((from.getMarkerTime(\end) + transition.startOffset.min(0) - 5).postln);
+			transition.calc(from, to, mask);
+			from.getMarkerTime(\end).debug("end marker time");
+			transition.fadeTime.debug("Fade time");
+			transition.startOffset.debug("Start offset");
+			from.play((from.getMarkerTime(\end) + transition.startOffset.min(0) - 5).debug("ffwd"));
 			transition.func(from, to, mask);
+			(transition.fadeTime ? 0).debug.wait;
 		}
+
 	},
 
 
@@ -63,16 +85,14 @@ var transitions = (
 		//Proto holds functions common to all transition envirs.
 		var proto = (
 			settings: (
-				fadeBounds: [5.0, 20]
+				fadeBounds: [10.0, 25]
 			),
 			getFadeBounds: { |self, from, to|
 				//Set max fade duration to 1/3 of either cell
-				// var fadeMax = from.getDuration.min(to.getDuration) * 0.33;
-				var fadeMax = 10;
+				var fadeMax = from.getDuration.min(to.getDuration) * 0.33;
 				//Scale fadeBounds so that max bounds value == fadeMax
 				var bounds = self.settings.fadeBounds * (fadeMax / self.settings.fadeBounds[1]).min(1);
 				//Return fadeBounds
-				to.getDuration.debug("to duration");
 				bounds
 			},
 
@@ -84,6 +104,7 @@ var transitions = (
 
 			run: { |self ...args|
 				self.calc(*args);
+				self.postln;
 				self.func(*args);
 			},
 
@@ -116,13 +137,12 @@ var transitions = (
 			func: { |self, from, to|
 				//FIXME: calculate time until end marker
 				//Maybe let this be a part of cell
-				from.timeToPos(\end, self.startOffset).postln;
+				from.timeToPos(\end, self.startOffset).debug("Wait");
 				from.waitForPos(\end, self.startOffset);
-				"okok".postln;
 				to.play;
 			},
 			calc: { |self, from, to|
-				self.startOffset = to.getMarkerTime(\start).neg
+				self.startOffset = to.getMarkerTime(\start).postln.neg
 			}
 		));
 
@@ -133,32 +153,28 @@ var transitions = (
 			},
 			calc: { |self, from, to|
 				self.calcFadeTime(from, to);
-				self.startOffset = self.fadeTime.neg;
+				self.startOffset = to.getMarkerTime(\start).neg
 			}
 		));
 
 		~fadeOut = make.((
 			func: { |self, from, to|
-				var time;
-				time = self.fadeTime;
 				from.waitForPos(\end, self.startOffset);
-				from.fadeOut(time);
-				"FIXME: Time for next cell start".warn;
-				time.wait; //FIXME: Find a good timing for when to start `to`
+				from.fadeOut(self.fadeTime);
 				to.play(nil, from.getQuant, from.clock);
 			},
 			calc: { |self, from, to|
 				self.calcFadeTime(from, to);
-				self.startOffset = self.fadeTime - to.getMarkerTime(\start)
+				//Wait for entire fade until starting. This should be adjusted?
+				self.startOffset = (self.fadeTime + to.getMarkerTime(\start)).neg
 			}
 		));
 
 		~xfade = make.((
 			func: { |self, from, to|
-				var time = self.calc;
 				from.waitForPos(\end, self.startOffset);
-				from.fadeOut(time);
-				to.fadeIn(time);
+				from.fadeOut(self.fadeTime, -2);
+				to.fadeIn(self.fadeTime, 2);
 			},
 			calc: { |self, from, to|
 				self.calcFadeTime(from, to);
