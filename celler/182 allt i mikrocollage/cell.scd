@@ -1,10 +1,17 @@
 
 Cell({
 
-	~settings[\disabled] = true;
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
+	~load = {
+		~settings[\duration] = 25.rrand(120);
+		"allt.scd".resolveRelative.load;
+	};
 
-	));
+	~freeAll = {
+		~buffers.do(_.free);
+	};
 
-}, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
+	~pattern = Pdef(\allt);
+
+}, \pattern).name_(PathName(thisProcess.nowExecutingPath).folderName)
+.play
