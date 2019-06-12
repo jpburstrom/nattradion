@@ -41,6 +41,16 @@ Fdef(\wavList, { |sub, path|
 
 });
 
+Fdef(\allSoundFiles, { |subdir=""|
+	var files = List();
+	PathName(config.assetPath +/+ subdir).filesDo { |file|
+		if (file.extension == "wav") {
+			files.add(file.absolutePath)
+		};
+	};
+	files
+});
+
 
 Fdef(\resolveAssets, { |obj|
 	var path;
