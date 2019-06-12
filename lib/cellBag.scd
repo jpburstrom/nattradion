@@ -15,6 +15,7 @@ var out = (
 	},
 	init: { |self|
 		self.nilCount = 0;
+		self.current.clear;
 		self.orig.do { |cell|
 			self.current.add(cell);
 		};
@@ -22,7 +23,7 @@ var out = (
 	//Check cell and add if metadata matches key
 	checkAddCell: { |self, cell, key|
 		var count, modFunc,
-		settings = cell.metadata !? (_[key]);
+		settings = cell.settings !? (_[key]);
 		settings !? {
 			if (settings.isNumber) {
 				count = settings;
@@ -30,12 +31,12 @@ var out = (
 				count = settings[\count];
 				modFunc = settings[\modFunc];
 			};
-
 			//Pass count to modFunc, so we can have different inits for different cells
-			count.do { |c|
+			count.asInteger.do { |c|
+				var name = "%_%-%".format(cell.name, key, c);
 				self.orig.add(cell.clone({
 					modFunc.(c)
-				}).name_("%_%-%".format(cell.name, key, c)))
+				}).name_(name))
 			}
 
 		}
@@ -54,9 +55,10 @@ var out = (
 		};
 		cells = self.current;
 		if (filter.notNil) {
-			cells = cells.select(filter);
+			cells = filter.value(cells);
+		} {
+			cells = cells.choose;
 		};
-		cells = cells.choose;
 		// filter may cause nil output for a long time
 		// if non-matching friends are all that's left
 		// so only go on without friends for so long
@@ -73,17 +75,5 @@ var out = (
 		self.orig.select(filter).size;
 	}
 );
-
-out.checkAddCell(Cell({
-	~init = {
-		~metadata = ();
-		~metadata[\isriend] = (
-			count: 3,
-			modFunc: { |count|
-				~test = count;
-			};
-		);
-	}
-}).name_("ok"), \isFriend);
 
 out;
