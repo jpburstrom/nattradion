@@ -162,6 +162,9 @@ Cell({
 
 	~init = {
 
+		~friends.init;
+		~transitions.init;
+
 		~updateTemplate.((
 			group: #[main, fx, level, out],
 			fx: [
@@ -180,6 +183,10 @@ Cell({
 		//"no-op".postln;
 	};
 
+	//Return cell or nil
+	~getFriendFor = { |cell|
+		~friends.takeCell(cell[\friendFilter]);
+	};
 
 	~reloadCell = { |cell|
 		var path = cell[\metadata][\path];
@@ -202,5 +209,4 @@ Cell({
 	}
 
 
-}, \cells).name_("cells").load;
-
+}, \cells).name_("cells");
