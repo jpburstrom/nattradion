@@ -29,7 +29,7 @@ Pdef(\sang,
 					ev = map[ev.key].yield;
 				}
 			},
-			\bufnum, Pfunc { |ev| ~buffers[ev.key].postln },
+			\bufnum, Pfunc { |ev| ~buffers[ev.key] },
 			\dur, Pfunc { |ev| ev.bufnum.duration },
 			\pan, Pfuncn({ |ev|
 				[-0.5, 0.5].interpolate(4.5).scramble[ev.index]

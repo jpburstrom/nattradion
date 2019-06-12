@@ -1,10 +1,10 @@
 
 "alps.scd".resolveRelative.load;
 
-v = Cell({
+Cell({
 
 	~load = {
-		~settings[\duration] = 1
+		~settings[\duration] = 60.rrand(130);
 	};
 	~settings[\reverb] = (
 		time: 4,
