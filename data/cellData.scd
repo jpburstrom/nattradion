@@ -4,14 +4,14 @@
 1: (
 	hasFriend: (
 		prob: 0.2,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -33,7 +33,9 @@
 11: (
 	hasFriend: (
 		prob: 1.0,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 ),
@@ -41,7 +43,9 @@
 15: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -51,9 +55,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -78,7 +80,9 @@
 27: (
 	hasFriend: (
 		prob: 0.7,
-		filter: "75% #187"
+		filter: "75% #187",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 ),
@@ -86,7 +90,9 @@
 28: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 ),
@@ -98,7 +104,9 @@
 32: (
 	hasFriend: (
 		prob: 0.35,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -112,9 +120,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -123,7 +129,9 @@
 38: (
 	hasFriend: (
 		prob: 1.0,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -136,7 +144,9 @@
 39: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -149,7 +159,9 @@
 34: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "ambience, noise, metronom"
+		filter: "ambience, noise, metronom",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 ),
@@ -157,14 +169,14 @@
 40: (
 	hasFriend: (
 		prob: 0.75,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isOneshot: (
 		count: 2.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -194,7 +206,9 @@
 55: (
 	hasFriend: (
 		prob: 0.8,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\cut, \bridge, \oneshot]
 ),
@@ -202,14 +216,14 @@
 56: (
 	hasFriend: (
 		prob: 1.0,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isOneshot: (
 		count: 3.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -218,7 +232,9 @@
 58: (
 	hasFriend: (
 		prob: 0.7,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\cut, \bridge, \oneshot]
 ),
@@ -230,7 +246,9 @@
 62: (
 	hasFriend: (
 		prob: 0.8,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 ),
@@ -250,7 +268,9 @@
 71: (
 	hasFriend: (
 		prob: 0.75,
-		filter: "atonal, ambience, noise"
+		filter: "atonal, ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -263,7 +283,9 @@
 72: (
 	hasFriend: (
 		prob: 0.3,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -273,9 +295,7 @@
 	isOneshot: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -284,7 +304,9 @@
 73: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "minimalistic, rythmic"
+		filter: "minimalistic, rythmic",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 5.0,
@@ -294,9 +316,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -305,7 +325,9 @@
 74: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "minimalistic, rythmic"
+		filter: "minimalistic, rythmic",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 5.0,
@@ -315,9 +337,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -334,7 +354,9 @@
 79: (
 	hasFriend: (
 		prob: 0.5,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 3.0,
@@ -344,9 +366,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -361,9 +381,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -372,7 +390,9 @@
 81: (
 	hasFriend: (
 		prob: 0.5,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 5.0,
@@ -382,9 +402,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -394,17 +412,13 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	isOneshot: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -413,7 +427,9 @@
 90: (
 	hasFriend: (
 		prob: 0.5,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 3.0,
@@ -423,17 +439,13 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	isOneshot: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -442,14 +454,14 @@
 91: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "atonal, ambience, noise"
+		filter: "atonal, ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -464,9 +476,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -475,7 +485,9 @@
 94: (
 	hasFriend: (
 		prob: 0.2,
-		filter: "bpm 120 bpm 60 eller ambience, noise"
+		filter: "bpm 120 bpm 60 eller ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 3.0,
@@ -485,9 +497,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade]
@@ -497,9 +507,7 @@
 	isOneshot: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -508,7 +516,9 @@
 98: (
 	hasFriend: (
 		prob: 1.0,
-		filter: "ambience, noise"
+		filter: "ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 2.0,
@@ -518,9 +528,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -530,9 +538,7 @@
 	isBridge: (
 		count: 15.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -547,9 +553,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -559,9 +563,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -571,9 +573,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -583,9 +583,7 @@
 	isOneshot: (
 		count: 14.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -600,9 +598,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -619,7 +615,9 @@
 111: (
 	hasFriend: (
 		prob: 0.8,
-		filter: "atonal, ambience, noise"
+		filter: "atonal, ambience, noise",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -629,17 +627,13 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	isOneshot: (
 		count: 20.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -648,7 +642,9 @@
 117: (
 	hasFriend: (
 		prob: 0.5,
-		filter: "minimalistic, rythmic"
+		filter: "minimalistic, rythmic",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 5.0,
@@ -658,9 +654,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -669,7 +663,9 @@
 120: (
 	hasFriend: (
 		prob: 0.2,
-		filter: ""
+		filter: "",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 2.0,
@@ -679,9 +675,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -690,7 +684,9 @@
 121: (
 	hasFriend: (
 		prob: 0.2,
-		filter: "Nummer #145"
+		filter: "Nummer #145",
+		modFunc: { |friend|
+		}
 	),
 	isFriend: (
 		count: 1.0,
@@ -700,9 +696,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -712,9 +706,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -723,7 +715,9 @@
 127: (
 	hasFriend: (
 		prob: 0.2,
-		filter: "Nummer #190"
+		filter: "Nummer #190",
+		modFunc: { |friend|
+		}
 	),
 	transitions: [\cut, \bridge, \oneshot]
 ),
@@ -737,9 +731,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
@@ -749,9 +741,7 @@
 	isOneshot: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
@@ -766,9 +756,7 @@
 	isBridge: (
 		count: 1.0,
 		modFunc: { |count|
-			~template[\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	),
 	transitions: [\cut, \bridge, \oneshot]
