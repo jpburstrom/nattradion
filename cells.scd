@@ -10,8 +10,6 @@ Cell({
 	//cellBag is a bag-like data structure
 	~friends = "lib/cellBag.scd".loadRelative[0];
 
-	~cellData = "data/cellData.scd".loadRelative[0];
-
 	//Returns a filter function for a given cell.
 	//Every time cell is played, we use that function
 	//to determine whether or not the cell should play together with a
@@ -116,11 +114,6 @@ Cell({
 
 				// Get number from directory name
 				num = dir.basename.split(Char.space).first.asInteger;
-
-				//Update settings from our TSV-generated data blob
-				~cellData[num] !? {
-					cell.updateSettings(~cellData[num]);
-				};
 
 				//Remove old instances from friends and transitions
 				//This is not useful now, but might become later if
