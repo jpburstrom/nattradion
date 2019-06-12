@@ -19,18 +19,14 @@ var printTemplate = { |obj|
 		"isBridge: (
 		count: %,
 		modFunc: { |count|
-			~template[\\buffer] = (
-				file: ~bridgeFiles[count]
-			);
+
 		};
 	)",
 	isOneshot:
 		"isOneshot: (
 		count: %,
 		modFunc: { |count|
-			~template[\\buffer] = (
-				file: ~oneShotFiles[count]
-			);
+
 		};
 	)"
 );
@@ -72,7 +68,6 @@ var printTemplate = { |obj|
 	"\n)"
 };
 
-// printTemplate.((name: "001 Percussion", friendProbability:0.2, friends:2, bridges:1, oneshots:2)).postln;
 {
 	var orig = TabFileReader.read(inPath, true, false);
 	var keys = orig[0].collect(_.asSymbol);
