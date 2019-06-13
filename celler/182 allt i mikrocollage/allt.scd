@@ -3,17 +3,6 @@
 };
 
 ~allFiles = Fdef(\allSoundFiles).value;
-~getBuffers = {
-	~allFiles.collect { |path|
-		SoundFile.use(path, { |f|
-			var len = ~randomLength.value * f.sampleRate;
-			var start = 0.rrand(f.numFrames - len);
-			Buffer.read(s, path, start, len);
-		})
-	};
-};
-
-
 
 ~getSingleBuffer = { |index|
 	var path = ~allFiles[index];
@@ -23,7 +12,33 @@
 		Buffer.read(s, path, start, len);
 	})
 };
-~buffers = ~getBuffers.value;
+
+
+
+~loadAllBuffers = {
+	var i = ~allFiles.size;
+	~buffers = ~allFiles.collect(nil);
+	20.do({|i|
+		~buffers[i] = ~getSingleBuffer.(i);
+
+	});
+	~server.sync;
+
+	~buffersLoading = true;
+	{
+		0.1.wait;
+		~allFiles.size.postln;
+		(20..(~allFiles.size-1)).do { |i|
+			~buffers[i].free;
+			~buffers[i] = ~getSingleBuffer.(i);
+			if (i % 20 == 0) {
+				0.1.wait;
+			};
+
+		};
+		~buffersLoading = false;
+	}.inEnvir.fork(AppClock);
+};
 
 (
 SynthDef(\bufPlayer_allt, {
@@ -54,10 +69,13 @@ Pdef(\allt, Pbind(
 		//Loop through all buffers while reloading the previous one
 		//(Getting a new random position in the file)
 		loop {
+			~buffers.size.postln;
 			~buffers.do { |buf, i|
 				var prev = (i - (15 * ev.legato)) % ~buffers.size;
-				~buffers[prev].free;
-				~buffers[prev] = ~getSingleBuffer.(prev);
+				if (~buffersLoading.not) {
+					~buffers[prev].free;
+					~buffers[prev] = ~getSingleBuffer.(prev);
+				};
 				ev = buf.yield;
 			};
 		}

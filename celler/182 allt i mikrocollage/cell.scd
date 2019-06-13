@@ -1,5 +1,8 @@
-
+var path = "allt.scd".resolveRelative;
 Cell({
+
+	path.load;
+
 
 //tsv
 	~init = {
@@ -22,11 +25,15 @@ Cell({
 
 	~load = {
 		~settings[\duration] = 25.rrand(120);
-		"allt.scd".resolveRelative.load;
+		~loadAllBuffers.value;
 	};
 
+	~afterLoad = nil;
+
 	~freeAll = {
+		"freeall".postln;
 		~buffers.do(_.free);
+		~groups.do(_.free).postln;
 	};
 
 	~pattern = Pdef(\allt);
