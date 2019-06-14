@@ -138,7 +138,7 @@ Cell({
 		} {
 			"Cell % disabled".format(cell.name).postln;
 			~disabledCells.add(cell);
-		}
+		};
 	};
 
 	//I think we need to do this here, to be able to populate the
@@ -166,6 +166,20 @@ Cell({
 			]
 		));
 
+	};
+
+
+	//Use cell reverb settings to set the global reverb
+	~setReverb = { |cell|
+		var mom = currentEnvironment;
+		if (cell.settings[\reverb].notNil) {
+			mom.set("fx.reverb.amp", cell.settings[\reverb][\amp] ? 0);
+			cell.settings[\reverb][\time] !? { |time|
+				mom.set("fx.reverb.time", time);
+			}
+		} {
+			mom.set("fx.reverb.amp", 0);
+		};
 	};
 
 	~load = {
