@@ -8,4 +8,6 @@ SynthDef(\limiter, {
 	snd = snd * \preamp.kr(1);
 	snd = Limiter.ar(snd, 0.99);
 	ReplaceOut.ar(\out.kr, snd);
-}).add
+}).add;
+
+SynthDef(\test, { ReplaceOut.ar(\out.kr, In.ar(\out.kr, 2) * LFPulse.ar(1).range(0, 1)) } ).add
