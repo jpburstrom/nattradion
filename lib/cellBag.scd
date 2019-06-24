@@ -34,9 +34,17 @@ var out = (
 			//Pass count to modFunc, so we can have different inits for different cells
 			count.asInteger.do { |c|
 				var name = "%_%-%".format(cell.name, key, c);
-				self.orig.add(cell.clone({
+				var copy = cell.clone({
 					modFunc.(c)
-				}).name_(name))
+				})
+				.name_(name);
+				copy.metadata ?? { copy.metadata = () };
+				cell.metadata.keysValuesDo { |k, v|
+					if (copy.metadata.notNil) {
+						copy.metadata[k] = v;
+					}
+				};
+				self.orig.add(copy);
 			}
 
 		}
