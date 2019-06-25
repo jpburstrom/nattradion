@@ -47,8 +47,9 @@ var transitions = (
 		self.transitions[type].run(from, to, mask);
 	},
 
-	testTransition: { |self, from, to, type, mask|
+	testTransition: { |self, from, to, type, mask, fork=true|
 		var transition = self.transitions[type];
+		var func;
 
 		// If oneshot or bridge, get the mask instance
 		type.switch(
@@ -62,7 +63,7 @@ var transitions = (
 
 
 
-		forkIfNeeded {
+		func = {
 			from.load;
 			to.load;
 			from.duration.debug("From duration");
@@ -74,10 +75,29 @@ var transitions = (
 			from.play((from.getMarkerTime(\end) + transition.startOffset.min(0) - 5).debug("ffwd"));
 			transition.func(from, to, mask);
 			(transition.fadeTime ? 0).debug.wait;
-		}
+		};
+
+		if (fork) {
+			self.testRoutine = func.fork;
+			self.testCleanup = {
+				from.free;
+				to.free;
+				mask.free;
+			};
+		} {
+			func.forkIfNeeded;
+		};
 
 	},
 
+	stopTransitionTest: { |self|
+		self.testRoutine.stop;
+		self.testCleanup;
+	},
+
+	types: { |self|
+		self.transitions.keys.asArray.sort;
+	},
 
 	//This is a library of transitions.
 	transitions: ().make({
