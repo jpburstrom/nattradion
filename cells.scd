@@ -116,16 +116,14 @@ Cell({
 				num = dir.basename.split(Char.space).first.asInteger;
 
 				//Remove old instances from friends and transitions
-				//This is not useful now, but might become later if
-				//we manage to get dynamic loading up and running
-				~template[\cells][num] !? { |oldCell|
-					~friends.removeCell(oldCell);
-					~transitions.removeCell(oldCell);
-				};
+				~friends.removeCellsByMetadata(\number, num);
+				~transitions.removeCellsByMetadata(\number, num);
 
 				cell.metadata[\number] = num;
 				~template[\cells][num] = cell;
 
+				//Check if cell is friend and/or transition material,
+				//In that case add to respective collection
 				~friends.checkAddCell(cell, \isFriend);
 				~transitions.checkAddCell(cell);
 				cell.friendFilter = ~friendFilterFactory.(cell);

@@ -56,6 +56,17 @@ var out = (
 		self.orig.remove(cell);
 		self.current.remove(cell);
 	},
+	removeCellsByMetadata: { |self, key, value|
+		var cells = List();
+		self.orig.do { |cell|
+			if (cell.metadata[key] == value) {
+				cells.add(cell);
+			}
+		};
+		cells.do { |cell|
+			self.removeCell(cell)
+		};
+	},
 	takeCell: { |self, filter|
 		var cells;
 		if (self.current.isEmpty) {

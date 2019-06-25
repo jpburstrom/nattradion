@@ -15,6 +15,11 @@ var transitions = (
 		self.bridges.removeCell(cell);
 	},
 
+	removeCellsByMetadata: { |self, key, value|
+		self.oneshots.removeCellsByMetadata(key, value);
+		self.bridges.removeCellsByMetadata(key, value);
+	},
+
 	clearAll: { |self|
 		self.oneshots.clearAll;
 		self.bridges.clearAll;
