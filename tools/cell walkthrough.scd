@@ -209,6 +209,7 @@ transitionButtons = [
 	Button().states_([["Reload"]]).action_({
 		cells.free;
 		cells = loadPath.load;
+		rebuildListViews.value;
 	}.inEnvir).keyDownAction_(false);
 ))
 .onClose_({
