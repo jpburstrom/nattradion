@@ -109,6 +109,53 @@ var listView = { |key, model|
 
 	listViews[key]
 };
+//A view factory which creates a view the first time it's called, then
+//the same function is used to update the values
+var transitionView = {
+	var strings = [
+		from: "",
+		to: "",
+		type: "",
+		mask: ""
+
+	];
+	var view;
+	{ |...args|
+		#[from, to, type, mask].do { |key, i|
+			strings[i*2+1] = args[i] ? "";
+		};
+		if (view.isNil) {
+			view = View().layout_(GridLayout.rows(
+				*strings.asPairs.clump(2).collect { |row|
+					row.collect({ |str|
+						StaticText().string_(str).font_(Font.default.size_(10));
+					})
+				}
+			).spacing_(0).margins_(0, 5))
+		} {
+			var r = strings.asPairs;
+			view.children.pairsDo { |label, val, i|
+				val.string_(r[i+1])
+			}
+		};
+		view
+	}
+}.value;
+
+var transitionFactory = { |type, reverse=false|
+	{
+		var from = currentlySelected[\cells];
+		var to = cells.cells.values.reject(_ == to).choose;
+		if (reverse) {
+			#from, to = [to, from];
+		};
+		transitionView.(from.name, to.name, type, currentlySelected[type] !? (_.name));
+		cells.transitions.testTransition(
+			from, to, type, currentlySelected[type]
+		);
+	}
+
+};
 
 var stopBtn, loadPath = "../cells.scd".resolveRelative;
 Window.closeAll;
@@ -116,31 +163,14 @@ cells = loadPath.load;
 
 transitionButtons = [
 	cells.transitions.types.collect { |type|
-		Button().states_([[type]]).font_(Font.default.size_(10)).action_({
-			var cur = currentlySelected[\cells];
-			//Set mask if type is oneshot or bridge
-
-			cells.transitions.testTransition(
-				cur.debug("From"),
-				cells.cells.values.reject(_==cur).choose.debug("To"),
-				type.debug("Type"),
-				//mask is only used  for oneshot and bridge
-				currentlySelected[type].debug("Mask")
-			);
-		}.inEnvir).keyDownAction_(false);
+		Button().states_([[type]]).font_(Font.default.size_(10)).action_(
+			transitionFactory.(type);
+		).keyDownAction_(false);
 	},
 	cells.transitions.types.collect { |type|
-		Button().states_([[type]]).font_(Font.default.size_(10)).action_({
-			var cur = currentlySelected[\cells];
-			//Set mask if type is oneshot or bridge
-			cells.transitions.testTransition(
-				cells.cells.values.reject(_==cur).choose.debug("From"),
-				cur.debug("To"),
-				type.debug("Type"),
-				//mask is only used  for oneshot and bridge
-				currentlySelected[type].debug("Mask")
-			);
-		}.inEnvir).keyDownAction_(false);
+		Button().states_([[type]]).font_(Font.default.size_(10)).action_(
+			transitionFactory.(type, true);
+		).keyDownAction_(false);
 	}
 ];
 
@@ -163,6 +193,7 @@ transitionButtons = [
 		).margins_(0, 0).spacing_(0))
 	).margins_(0, 0).spacing_(0)),
 
+	transitionView.(),
 	//ListView with cells
 	//Select (for play) on single click
 	//Edit on double click
