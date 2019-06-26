@@ -100,43 +100,53 @@ Cell({
 			metadata[k.asSymbol] = v
 		});
 
-		cell = path.load;
+		cell = try { path.load };
 
-		if ((cell.settings[\disabled] == true).not) {
+		if (cell.notNil) {
 
-			if (cell.isKindOf(Cell)) {
-				// Add metadata;
-				cell.metadata = metadata;
-				cell.metadata[\path] = path;
-				// If tempo is not set in cell, get tempo from metadata
-				cell.settings[\tempo] = cell.settings[\tempo] ? metadata[\tempo];
-				cell.name = metadata[\title];
+			if ((cell.settings[\disabled] == true).not) {
 
-				// Get number from directory name
-				num = dir.basename.split(Char.space).first.asInteger;
+				if (cell.isKindOf(Cell)) {
+					// Add metadata;
+					// TODO merge with cell metadata?
+					cell.metadata = metadata;
+					cell.metadata[\path] = path;
+					// If tempo is not set in cell, get tempo from metadata
+					cell.settings[\tempo] = cell.settings[\tempo] ? metadata[\tempo];
+					cell.name = metadata[\title];
 
-				//Remove old instances from friends and transitions
-				~friends.removeCellsByMetadata(\number, num);
-				~transitions.removeCellsByMetadata(\number, num);
+					// Get number from directory name
+					num = dir.basename.split(Char.space).first.asInteger;
 
-				cell.metadata[\number] = num;
-				~template[\cells][num] = cell;
+					//Remove old instances from friends and transitions
+					~friends.removeCellsByMetadata(\number, num);
+					~transitions.removeCellsByMetadata(\number, num);
 
-				//Check if cell is friend and/or transition material,
-				//In that case add to respective collection
-				~friends.checkAddCell(cell, \isFriend);
-				~transitions.checkAddCell(cell);
-				cell.friendFilter = ~friendFilterFactory.(cell);
+					cell.metadata[\number] = num;
+					~template[\cells] !? { |cellTemplate|
+						cellTemplate[num] = cell;
+					};
 
-				cell
+					//Check if cell is friend and/or transition material,
+					//In that case add to respective collection
+					~friends.checkAddCell(cell, \isFriend);
+					~transitions.checkAddCell(cell);
+
+					cell.friendFilter = ~friendFilterFactory.(cell);
+
+					cell
+				} {
+					// PathName(path).pathOnly.openOS;
+					Error("Path at % should return a cell".format(path)).throw;
+				}
 			} {
-				// PathName(path).pathOnly.openOS;
-				Error("Path at % should return a cell".format(path)).throw;
-			}
+				"Cell % disabled".format(cell.name).postln;
+				~disabledCells.add(cell);
+			};
 		} {
-			"Cell % disabled".format(cell.name).postln;
-			~disabledCells.add(cell);
-		};
+			"Failed loading cell at %".format(path).warn;
+			nil
+		}
 	};
 
 	//I think we need to do this here, to be able to populate the
