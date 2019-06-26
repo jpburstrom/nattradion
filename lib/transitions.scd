@@ -10,6 +10,11 @@ var transitions = (
 		self.bridges.checkAddCell(cell, \isBridge);
 	},
 
+	setMother: { |self, mom|
+		self.oneshots.setMother(mom);
+		self.bridges.setMother(mom);
+	},
+
 	removeCell: { |self, cell|
 		self.oneshots.removeCell(cell);
 		self.bridges.removeCell(cell);

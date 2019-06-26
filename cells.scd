@@ -163,6 +163,11 @@ Cell({
 
 	~init = {
 
+		//XXX Mother (currentEnvironment) doesn't know about these
+		//children, which might be a problem.
+		~friends.setMother(currentEnvironment);
+		~transitions.setMother(currentEnvironment);
+
 		~friends.init;
 		~transitions.init;
 

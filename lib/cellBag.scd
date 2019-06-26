@@ -49,6 +49,11 @@ var out = (
 
 		}
 	},
+	setMother: { |self, mom|
+		self.orig.do { |cell|
+			cell.setMother(mom);
+		};
+	},
 	cells: { |self|
 		self.current
 	},
