@@ -67,9 +67,10 @@ Cell({
 			} {
 				if (filter.isFunction) {
 					fun = filter;
-				};
+				} {
+					true
+				}
 			};
-			fun;
 		};
 
 
@@ -86,9 +87,9 @@ Cell({
 
 		cell.friendProbability = prob;
 
-		// Return function if prob
-		if (prob > 0) {
-			filter
+		{ |friend|
+			[friend.metadata[\number], cell.metadata[\number]];
+			friend.metadata[\number] != cell.metadata[\number] and: { filter.value(friend) };
 		}
 	};
 
