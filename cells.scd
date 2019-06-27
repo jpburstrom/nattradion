@@ -38,6 +38,8 @@ Cell({
 				fun = { |cell|
 					var match = false;
 					filter.keysValuesDo { |k, v|
+						var cellVal;
+
 						if (v.isString) {
 							v = [v];
 						} {
@@ -45,8 +47,16 @@ Cell({
 						};
 
 						//Match if any metadata value matches
-						cell.metadata[k].do { |val|
-							if (v.includes(val)) {
+						cellVal = cell.metadata[k];
+
+						if (cellVal.isString) {
+							cellVal = [cellVal];
+						} {
+							cellVal = cellVal.asArray;
+						};
+
+						cellVal.do { |val|
+							if (v.includesEqual(val)) {
 								match = true;
 							}
 						};
@@ -102,6 +112,12 @@ Cell({
 					// Add metadata;
 					// TODO merge with cell metadata?
 					cell.metadata = metadata;
+					cell.metadata[\tags] = cell.metadata[\tags].collect({ |t|
+						t.toLower.asSymbol
+					});
+					#[tempo, rating].do { |k|
+						cell.metadata[k] = cell.metadata[k] !? (_.asFloat)
+					};
 					cell.metadata[\path] = path;
 					// If tempo is not set in cell, get tempo from metadata
 					cell.settings[\tempo] = cell.settings[\tempo] ? metadata[\tempo];
