@@ -7,8 +7,10 @@ var transitionButtons;
 var document;
 var task;
 var rebuildListViews = {
+	var cell;
 	listView.(\cells, cells.cells.values);
-	listView.(\friends, cells.friends.cells);
+	cell = currentlySelected[\cells];
+	listView.(\friends, cells.friends.filteredCells(cell[\friendFilter]));
 	listView.(\oneshot, cells.transitions.oneshots.cells);
 	listView.(\bridge, cells.transitions.bridges.cells);
 };
@@ -107,7 +109,7 @@ var listView = { |key, model|
 		currentlySelected[key] ?? {
 			currentlySelected[key] = model[0];
 		} !? {
-			listViews[key].valueAction = model.indexOf(currentlySelected[key]) ? 0
+			listViews[key].valueAction = model.collect(_.name).indexOfEqual(currentlySelected[key].name) ? 0
 		};
 	} {
 		currentlySelected[key] = nil
@@ -253,7 +255,7 @@ transitionButtons = [
 		if (rebuild.notEmpty) {
 			"Rebuilding list views".postln;
 			cells.init;
-			0.1.wait;
+			1.wait;
 			rebuildListViews.value;
 		};
 	}, 0.5);
