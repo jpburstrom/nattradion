@@ -65,10 +65,11 @@ var listView = { |key, model|
 
 		}
 	}).action_({ |v|
-		currentlySelected[key] = model[v.value];
+		var cell = model[v.value];
+		currentlySelected[key] = cell;
 
 		if (key == \cells) {
-			var allowed = model[v.value].settings[\transitions];
+			var allowed = cell.settings[\transitions];
 			cells.transitions.types.do { |k, i|
 				transitionButtons.do { |arr|
 					if (arr.notNil) {
@@ -76,6 +77,7 @@ var listView = { |key, model|
 					}
 				}
 			};
+			listView.(\friends, cells.friends.filteredCells(cell[\friendFilter]));
 		};
 
 	}).keyUpAction_({ |v, char, mod, unicode, keycode, key|
@@ -100,11 +102,15 @@ var listView = { |key, model|
 		if (key == 32) { false };
 	});
 
-	//If we have a selection, restore it, otherwise set to first item
-	currentlySelected[key] ?? {
-		currentlySelected[key] = model[0];
-	} !? {
-		listViews[key].valueAction = model.indexOf(currentlySelected[key]) ? 0
+	if (model.isEmpty.not) {
+		//If we have a selection, restore it, otherwise set to first item
+		currentlySelected[key] ?? {
+			currentlySelected[key] = model[0];
+		} !? {
+			listViews[key].valueAction = model.indexOf(currentlySelected[key]) ? 0
+		};
+	} {
+		currentlySelected[key] = nil
 	};
 
 	listViews[key]

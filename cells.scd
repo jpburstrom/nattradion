@@ -81,7 +81,7 @@ Cell({
 					if (debug) {
 						cells.debug("Filtered cells");
 					};
-					cells.choose
+					cells !? { cells.choose };
 				}
 			}
 		} {

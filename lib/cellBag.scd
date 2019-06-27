@@ -72,17 +72,20 @@ var out = (
 			self.removeCell(cell)
 		};
 	},
+	filteredCells: { |self, filter, cells|
+		cells ?? { cells = self.orig };
+		if (filter.notNil) {
+			cells.select(filter);
+		} {
+			cells;
+		};
+	},
 	takeCell: { |self, filter|
 		var cells;
 		if (self.current.isEmpty) {
 			self.init
 		};
-		cells = self.current;
-		if (filter.notNil) {
-			cells = filter.value(cells);
-		} {
-			cells = cells.choose;
-		};
+		cells = self.filteredCells(filter, self.current);
 		// filter may cause nil output for a long time
 		// if non-matching friends are all that's left
 		// so only go on without friends for so long
@@ -91,6 +94,8 @@ var out = (
 			if (self.nilCount == self.nilThreshold) {
 				self.init;
 			}
+		} {
+			cells = cells.choose;
 		};
 		self.current.remove(cells);
 		cells;
