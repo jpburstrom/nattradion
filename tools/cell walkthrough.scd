@@ -1,8 +1,15 @@
 (
 var cells;
+// -- These three share keys --
+// Playing cells for each category
 var nowPlaying = ();
+// Currently selected cells for each category
 var currentlySelected = ();
+// GUI listViews
 var listViews = ();
+// ----
+// Last selected item, used for load test
+var lastSelected;
 var transitionButtons;
 var document;
 var task;
@@ -43,6 +50,64 @@ var togglePlay = {  |key, cell|
 		cells.play.then(func)
 	}, func);
 };
+var loadTestWindow;
+var loadTest = { |cell|
+	var win, cont, view;
+	var t = { |str, p|
+		StaticText(p).font_(Font.monospace.size_(10)).string_(str)
+	};
+	var f = { |str, p|
+		var class = TextField;
+		if (str.contains("\n")) {
+			class = TextView
+		};
+		class.perform(\new, p).maxHeight_(50).enabled_(false).font_(Font.monospace.size_(10)).string_(str)
+	};
+	var displayEnvir = { |envir, view|
+		View(view).layout_(GridLayout.rows(
+			*envir.keys.asArray.sort.collect({ |k|
+				var val = envir[k];
+				if (val.isKindOf(Dictionary)) {
+					val = displayEnvir.(val)
+				} {
+					val = f.(val.asCompileString);
+				};
+				[t.(k), val]
+			})
+		).spacing_(0).setColumnStretch(0, 1).setColumnStretch(1, 3))
+	};
+	if (cell.isNil) {
+		cell = lastSelected;
+	};
+	if (cell.isPlaying) { cell.free };
+	cell.load;
+	win = Window("Load test: %".format(cell.name), Rect(800, 600, 800, 600))
+	.onClose_({ cell.free }).front;
+	cont = ScrollView(win, Rect(0, 0, 800, 600)).hasHorizontalScroller_(false);
+	view = View().layout_(VLayout());
+	Button(view).states_([["Edit"]]).action_({
+		editDocument.(cell.metadata[\path]);
+	}).maxWidth_(100).keyDownAction_(false);
+	displayEnvir.(cell.envir, view);
+	t.(\PROTO, view);
+	displayEnvir.(cell.envir.proto, view);
+	t.(\PARENT, view);
+	displayEnvir.(cell.envir.parent, view);
+	view.layout.add(nil);
+	cont.canvas = view;
+
+	view.focus.keyDownAction_({ |v, char, mod, unicode, keycode, key|
+		// Pass on space to main window
+		switch(key,
+			16777216, { win.close }, //Esc,
+			69, { editDocument.(cell.metadata[\path]) }
+		);
+	});
+
+	loadTestWindow !? (_.close);
+	loadTestWindow = win;
+
+};
 var listView = { |key, model|
 	var names, paths;
 
@@ -72,6 +137,7 @@ var listView = { |key, model|
 		}
 	}).action_({ |v|
 		var cell = model[v.value];
+		lastSelected = cell;
 		currentlySelected[key] = cell;
 
 		if (key == \cells) {
@@ -95,12 +161,13 @@ var listView = { |key, model|
 			};
 
 		} {
-			key.postln;
 			// Pass on space to main window
 			switch(key,
 				32, { false },
 				// e
-				69, { editDocument.(paths[v.value]) }
+				69, { editDocument.(paths[v.value]) },
+				// t
+				84, { loadTest.(model[v.value]) }
 			);
 		};
 
@@ -192,6 +259,10 @@ transitionButtons = [
 ~walkWin = Window("Nattradion", Window.availableBounds.width_(200)).layout_(VLayout(
 	Button().states_(
 		[["Stop all"]]).action_(stopAll).keyDownAction_(false),
+	Button().states_(
+		[["Load test"]]).action_({
+		loadTest.value
+	}).keyDownAction_(false),
 	listView.(\cells, cells.cells.values),
 	View().layout_(HLayout(
 		View().layout_(VLayout(
