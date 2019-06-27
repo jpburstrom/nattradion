@@ -73,21 +73,13 @@ Cell({
 		if (debug) {
 			prob.debug("Probability");
 		};
+
+		cell.friendProbability = prob;
+
 		// Return function if prob
 		if (prob > 0) {
-			{ |cells|
-				if (prob.coin) {
-					cells = cells.select(filter);
-					if (debug) {
-						cells.debug("Filtered cells");
-					};
-					cells !? { cells.choose };
-				}
-			}
-		} {
-			nil
+			filter
 		}
-
 	};
 
 	~loadCellFromPath = { |path|
@@ -205,7 +197,9 @@ Cell({
 
 	//Return cell or nil
 	~getFriendFor = { |cell|
-		~friends.takeCell(cell[\friendFilter]);
+		if ((cell.friendProbability ? 0).coin) {
+			~friends.takeCell(cell[\friendFilter]);
+		};
 	};
 
 	~reloadCell = { |cell|
