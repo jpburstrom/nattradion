@@ -21,6 +21,10 @@ var editDocument = { |path|
 	"open \"/Applications\/SuperCollider\/SuperCollider.app\"".unixCmd;
 	oldDoc !? (_.close);
 };
+var stopAll = {
+	nowPlaying.values.do(_.free);
+	cells.transitions.stopTransitionTest;
+};
 var togglePlay = {  |key, cell|
 	var func = {
 		var old = nowPlaying[key];
@@ -91,6 +95,7 @@ var listView = { |key, model|
 			};
 
 		} {
+			key.postln;
 			// Pass on space to main window
 			switch(key,
 				32, { false },
@@ -165,7 +170,7 @@ var transitionFactory = { |type, reverse=false|
 
 };
 
-var stopBtn, loadPath = "../cells.scd".resolveRelative;
+var loadPath = "../cells.scd".resolveRelative;
 Window.closeAll;
 cells = loadPath.load;
 
@@ -185,10 +190,8 @@ transitionButtons = [
 
 ~walkWin !? (_.close);
 ~walkWin = Window("Nattradion", Window.availableBounds.width_(200)).layout_(VLayout(
-	stopBtn = Button().states_([["Stop all"]]).action_({ |b|
-		nowPlaying.values.do(_.free);
-		cells.transitions.stopTransitionTest;
-	}).keyDownAction_(false),
+	Button().states_(
+		[["Stop all"]]).action_(stopAll).keyDownAction_(false),
 	listView.(\cells, cells.cells.values),
 	View().layout_(HLayout(
 		View().layout_(VLayout(
@@ -263,7 +266,7 @@ transitionButtons = [
 
 ~walkWin.view.keyDownAction_({ |v, char, mod, unicode, keycode, key|
 	if (key == 32) { //Space
-		stopBtn.valueAction = 1;
+		stopAll.value;
 	};
 });
 
