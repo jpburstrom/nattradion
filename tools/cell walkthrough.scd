@@ -253,6 +253,7 @@ transitionButtons = [
 		if (rebuild.notEmpty) {
 			"Rebuilding list views".postln;
 			cells.init;
+			0.1.wait;
 			rebuildListViews.value;
 		};
 	}, 0.5);
