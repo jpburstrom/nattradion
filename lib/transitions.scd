@@ -251,6 +251,8 @@ var transitions = (
 				//Next cell always plays in sync with previous end
 				from.waitForPos(\end);
 				to.play;
+				3.wait;
+				bridge.fadeOut(bridge.timeToPos(\playEnd));
 
 			},
 			calc: { |self, from, to, bridge|
