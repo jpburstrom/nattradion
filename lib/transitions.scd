@@ -40,7 +40,15 @@ var transitions = (
 		self.bridges.init;
 	},
 
+	makeFilter: { |self, from, to|
+		{ |cell|
+			[from, to].collect({ |c|
+				c.metadata[\number]
+			}).includes(cell.metadata[\number].not);
+		};
+	},
 	chooseTransition: { |self, from, to, type, mask|
+		var filter = self.makeFilter(from, to);
 		type = type ?? { self.transitions.keys.choose };
 		type = #[cut, fadeIn, fadeOut, xfade].choose; //TMP
 		fork { 5.wait; type.debug("Next transition");
@@ -48,26 +56,27 @@ var transitions = (
 		};
 		type.switch(
 			\oneshot, {
-				mask = mask ?? { mask = self.oneshots.takeCell };
+				mask = mask ?? { mask = self.oneshots.takeCell(filter) };
 			},
 			\bridge, {
-				mask = mask ?? { mask = self.bridges.takeCell };
+				mask = mask ?? { mask = self.bridges.takeCell(filter) };
 			}
 		);
 		self.transitions[type].run(from, to, mask);
 	},
 
 	testTransition: { |self, from, to, type, mask, fork=true|
+		var filter = self.makeFilter(from, to);
 		var transition = self.transitions[type];
 		var func;
 
 		// If oneshot or bridge, get the mask instance
 		type.switch(
 			\oneshot, {
-				mask = mask ?? { mask = self.oneshots.takeCell };
+				mask = mask ?? { mask = self.oneshots.takeCell(filter) };
 			},
 			\bridge, {
-				mask = mask ?? { mask = self.bridges.takeCell };
+				mask = mask ?? { mask = self.bridges.takeCell(filter) };
 			}
 		);
 
