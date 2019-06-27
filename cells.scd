@@ -135,6 +135,13 @@ Cell({
 						cellTemplate[num] = cell;
 					};
 
+					// If we're reloading an already existing cell,
+					// we need to reassign
+					if ((~cells !? (_[num])).notNil) {
+						~cells[num].free;
+						~cells[num] = cell;
+					};
+
 					//Check if cell is friend and/or transition material,
 					//In that case add to respective collection
 					~friends.checkAddCell(cell, \isFriend);
