@@ -15,12 +15,9 @@ Cell({
 	};
 //end tsv
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'lang': "034 lang/lang.wav",
-         /*
-		 'lång_utan_rytmsektion': "034 lång/lång stems/lång utan rytmsektion.wav",
-		 'lång_rytm': "034 lång/lång stems/lång rytm.wav"
-         */
-	));
+	~template[\buffer] = (
+		'lang':  Fdef(\randomDurationTemplate).value("034 lang/lang.wav", 300)
+	);
+
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

@@ -15,8 +15,9 @@ Cell({
 	};
 //end tsv
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'combat': "036 combat/combat.wav" 
-	));
+	~template[\buffer] = (
+		'combat':  Fdef(\randomDurationTemplate).value("036 combat/combat.wav", 105)
+	);
+
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

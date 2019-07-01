@@ -6,7 +6,6 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.7,
-				filter: "75% #187",
 				modFunc: { |friend|
 				}
 			),
@@ -15,8 +14,19 @@ Cell({
 	};
 //end tsv
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		 '100_takter': "027 100 takter/100 takter.wav" 
-	));
+	~load = {
+		//Install custom friendFilter. 75% chance of being #187
+		if (0.75.coin) {
+			~friendFilter = { |cell|
+				cell.metadata[\number] == 187;
+			};
+		} {
+			~friendFilter = true;
+		};
+	};
+
+	~template[\buffer] = (
+		file:  Fdef(\randomDurationTemplate).value("027 100 takter/100 takter.wav", 120);
+	);
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

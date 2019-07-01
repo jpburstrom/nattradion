@@ -7,16 +7,19 @@ Cell({
 //tsv
 	~init = {
 		~updateSettings.((
-			transitions: [\fade, \xfade]
+			transitions: [\fade, \xfade],
 		));
 	};
 //end tsv
+
+	~load = {
+
+	};
 	~template[\buffer] = (
-		file:  { files.choose }
+		file:  Fdef(\randomDurationTemplate).value(files.choose, 60);
 	)
 
 
 
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
-

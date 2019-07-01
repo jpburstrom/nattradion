@@ -20,8 +20,8 @@ Cell({
 	};
 //end tsv
 
-	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'osammanhangande_harmonik': "038 osammanhangande harmonik/osammanhangande harmonik.wav" 
-	));
+	~template[\buffer] = (
+		'osammanhangande_harmonik':  Fdef(\randomDurationTemplate).value("038 osammanhangande harmonik/osammanhangande harmonik.wav", 180)
+	);
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
