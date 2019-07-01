@@ -96,3 +96,11 @@ Fdef(\randomDurationTemplate, { |path, minDur=0, maxDur, offset|
 		}
 	);
 });
+
+Fdef(\setRandomBufferDuration, { |minDur, maxDur, offset|
+
+	~template[\buffer].keysValuesChange({ |k, v|
+		Fdef(\randomDurationTemplate).value(v, minDur, maxDur, offset);
+	});
+
+});
