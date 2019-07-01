@@ -6,9 +6,14 @@ Cell({
 //tsv
 	~init = {
 		~updateSettings.((
+			isFriend: (
+				count: 1,
+				modFunc: { |count|
+				}
+			),
 			hasFriend: (
 				prob: 0.8,
-				filter: "+ #121",
+				filter: (number: 121),
 				modFunc: { |friend|
 				}
 			),

@@ -6,7 +6,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.5,
-				filter: "minimalistic, rythmic",
+				filter: (
+					tags: #[minimalistic, rhythmic],
+				),
 				modFunc: { |friend|
 				}
 			),
@@ -26,7 +28,7 @@ Cell({
 //end tsv
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
-		 '117_hip_hop_kun_reverb': "117 hip hop kun reverb/117 hip hop kun reverb.wav" 
+		 '117_hip_hop_kun_reverb': "117 hip hop kun reverb/117 hip hop kun reverb.wav"
 	));
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

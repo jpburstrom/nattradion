@@ -34,7 +34,7 @@ Cell({
 					};
 					~play = {
 						~settings.postln;
-					};
+					};11
 				};
 			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]

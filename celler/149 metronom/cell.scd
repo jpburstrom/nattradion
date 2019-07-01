@@ -10,6 +10,11 @@ Cell({
 				modFunc: { |friend|
 				}
 			),
+			isFriend: (
+				count: 1.0,
+				modFunc: { |count|
+				}
+			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 		));
 	};

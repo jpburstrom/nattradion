@@ -6,7 +6,7 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.6,
-				filter: "mås från #091",
+				filter: (number: 97),
 				modFunc: { |friend|
 				}
 			),

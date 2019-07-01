@@ -6,7 +6,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 1.0,
-				filter: "ambience, noise",
+				filter: (
+					tags: #[ambience, noise],
+				),
 				modFunc: { |friend|
 				}
 			),
@@ -21,7 +23,7 @@ Cell({
 //end tsv
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'liters_ters_kvint': "056 kvint liten ters oktav/liters ters kvint.wav" 
+		 'liters_ters_kvint': "056 kvint liten ters oktav/liters ters kvint.wav"
 	));
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

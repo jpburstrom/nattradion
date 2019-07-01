@@ -5,9 +5,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.5,
-				filter: { |cell|
-					cell.metadata[\number] == 94
-				},
+				filter: (
+					tags: #[ambience, noise],
+				),
 				modFunc: { |friend|
 				}
 			),

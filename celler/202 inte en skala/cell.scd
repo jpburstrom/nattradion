@@ -9,7 +9,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.25,
-				filter: "melodic, rubato",
+				filter: (
+					tags: #[melodic, rubato],
+				),
 				modFunc: { |friend|
 				}
 			),

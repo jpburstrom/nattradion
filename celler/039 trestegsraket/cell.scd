@@ -5,7 +5,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.5,
-				filter: "ambience, noise",
+				filter: (
+					tags: #[ambience, noise],
+				),
 				modFunc: { |friend|
 				}
 			),

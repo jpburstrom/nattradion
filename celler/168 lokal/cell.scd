@@ -6,7 +6,7 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 1.0,
-				filter: "Spela det som spelades för 10 minuter sedan svagt i bakgrund",
+				filter: true,
 				modFunc: { |friend|
 				}
 			),

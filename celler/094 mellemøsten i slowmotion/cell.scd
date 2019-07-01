@@ -6,7 +6,10 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.2,
-				filter: "bpm 120 bpm 60 eller ambience, noise",
+				filter: (
+					tags: #[ambience, noise],
+					tempo: [60, 120]
+				),
 				modFunc: { |friend|
 				}
 			),

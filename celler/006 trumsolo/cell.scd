@@ -7,9 +7,14 @@ Cell({
 			isFriend: (
 				count: 1.0,
 				modFunc: { |count|
+
+					~template[\buffer][\trumsolo_kompband] = nil;
+
+					/*
 					~template[\fx] = (
 						test: \test
 					)
+					*/
 				}
 			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]

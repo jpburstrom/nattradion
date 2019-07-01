@@ -9,7 +9,11 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.75,
-				filter: "fiol #100, ambience, noise",
+				//filter: "fiol #100, ambience, noise",
+				filter: (
+					number: 100,
+					tags: #[ambience, noise]
+				),
 				modFunc: { |friend|
 				}
 			),

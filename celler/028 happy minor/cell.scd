@@ -6,7 +6,9 @@ Cell({
 		~updateSettings.((
 			hasFriend: (
 				prob: 0.5,
-				filter: "ambience, noise",
+				filter: (
+					tags: #[ambience, noise],
+				),
 				modFunc: { |friend|
 				}
 			),
@@ -16,7 +18,7 @@ Cell({
 //end tsv
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
-		 'happy_minor': "028 happy minor/happy minor.wav" 
+		 'happy_minor': "028 happy minor/happy minor.wav"
 	));
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)
