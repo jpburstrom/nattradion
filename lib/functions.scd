@@ -90,7 +90,8 @@ Fdef(\randomDurationTemplate, { |path, minDur=0, maxDur, offset|
 			};
 			dur = minDur.rrand(maxDur);
 			rest = sf.duration - dur.value;
-
+			//BIG HACK
+			currentEnvironment.settings[\duration] = dur;
 			dur;
 		}
 	);
