@@ -20,5 +20,6 @@ Cell({
 	~template[\buffer] = (
 		'fur_elise':  Fdef(\randomDurationTemplate).value("062 fur elise baklanges/fur elise.wav", 60)
 	);
+	~settings[\setDurationFromFile] = false;
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

@@ -24,7 +24,7 @@ Cell({
 			~friendFilter = true;
 		};
 	};
-
+	~settings[\setDurationFromFile] = false;
 	~template[\buffer] = (
 		file:  Fdef(\randomDurationTemplate).value("027 100 takter/100 takter.wav", 120);
 	);

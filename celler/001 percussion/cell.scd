@@ -24,12 +24,12 @@ Cell({
 						~template[\fx] = (
 							shift: [\freqshift, [freq: { ~ctlBus.(\shift).asMap }]]
 						);
+						Fdef(\setRandomBufferDuration).value(20.0, 50).debug("hohohO");
+						~settings[\setDurationFromFile] = false;
+
 					};
 					~load = {
-						var oldDur = ~settings[\duration];
 						~markers[\end] = nil;
-						~settings[\duration] = 20.rrand(50);
-						~settings[\startTime] = (oldDur - ~settings[\duration]).rand;
 						~settings[\fadeIn] = 5;
 					};
 					~play = {

@@ -18,6 +18,7 @@ Cell({
 	~template[\buffer] = (
 		'combat':  Fdef(\randomDurationTemplate).value("036 combat/combat.wav", 105)
 	);
+	~settings[\setDurationFromFile] = false;
 
 
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

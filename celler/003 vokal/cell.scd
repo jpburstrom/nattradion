@@ -15,6 +15,7 @@ Cell({
 	~load = {
 
 	};
+	~settings[\setDurationFromFile] = false;
 	~template[\buffer] = (
 		file:  Fdef(\randomDurationTemplate).value(files.choose, 60);
 	)
