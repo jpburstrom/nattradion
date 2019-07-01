@@ -60,12 +60,38 @@ Fdef(\resolveAssets, { |obj|
 		nil
 	};
 	obj.keysValuesChange { |k, v|
-		path = File.realpath((config.assetPath +/+ v));
-		if (path.isNil) {
-			Error("Couldn't find file at %".format(v)).throw;
-		};
-		path
+		Fdef(\resolveAssetPath).value(v);
 	};
 
 	obj
+});
+
+Fdef(\resolveAssetPath, { |path|
+	path = File.realpath((config.assetPath +/+ path));
+	if (path.isNil) {
+		Error("Couldn't find file at %".format(v)).throw;
+	};
+	path
+});
+
+Fdef(\randomDurationTemplate, { |path, minDur=0, maxDur, offset|
+	var dur, rest=0;
+	if (PathName(path).isRelativePath) {
+		path = Fdef(\resolveAssetPath).value(path);
+	};
+	(
+		path: path,
+		startTime: {
+			rest.rand;
+		},
+		duration: { |sf|
+			if (maxDur.isNil) {
+				maxDur =  sf.duration ;
+			};
+			dur = minDur.rrand(maxDur);
+			rest = sf.duration - dur.value;
+
+			dur;
+		}
+	);
 });
