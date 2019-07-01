@@ -7,6 +7,9 @@ Cell({
 			isFriend: (
 				count: 1.0,
 				modFunc: { |count|
+					~template[\fx] = (
+						test: \test
+					)
 				}
 			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
