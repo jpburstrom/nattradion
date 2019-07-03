@@ -66,8 +66,8 @@ Fdef(\resolveAssets, { |obj|
 	obj
 });
 
-Fdef(\resolveAssetPath, { |path|
-	path = File.realpath((config.assetPath +/+ path));
+Fdef(\resolveAssetPath, { |v|
+	var path = File.realpath((config.assetPath +/+ v));
 	if (path.isNil) {
 		Error("Couldn't find file at %".format(v)).throw;
 	};
