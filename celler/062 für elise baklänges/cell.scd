@@ -22,4 +22,16 @@ Cell({
 	);
 	~settings[\setDurationFromFile] = false;
 
+	~load = {
+		Fdef(\ifHasFriend).value({
+			var path = [
+				"062 fur elise baklanges/stems/fur elise bas.wav",
+				"062 fur elise baklanges/stems/fur elise drum.wav"
+			].choose;
+			Fdef(\replaceBuffer).value(
+				'fur_elise', path
+			);
+		})
+	};
+
 }, \disk).name_(PathName(thisProcess.nowExecutingPath).folderName)

@@ -7,24 +7,39 @@ Cell({
 				prob: 0.5,
 				filter: (
 					tags: #[ambience, noise],
-				),
-				modFunc: { |friend|
-				}
+				)
 			),
 			isFriend: (
 				count: 1.0,
 				modFunc: { |count|
+					~template[\buffer] = Fdef(\resolveAssets).value((
+						'015_ur-rytmen_bagpipe': "015 ur-rytmen/ur-rytmen stems/015 ur-rytmen bagpipe.wav",
+					));
 				}
 			),
 			isBridge: (
 				count: 1.0,
 				modFunc: { |count|
+					~template[\buffer] = Fdef(\resolveAssets).value((
+						'015_ur-rytmen_bagpipe': "015 ur-rytmen/ur-rytmen stems/015 ur-rytmen bagpipe.wav",
+					));
 				};
 			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 		));
+
 	};
 //end tsv
+
+
+	~load = {
+		Fdef(\ifHasFriend).value({
+			Fdef(\replaceBuffer).value(
+				'015_ur-rytmen',
+				"015 ur-rytmen/ur-rytmen stems/015 ur-rytmen bass-perc.wav"
+			);
+		})
+	};
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*

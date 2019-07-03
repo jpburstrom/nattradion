@@ -13,12 +13,24 @@ Cell({
 			isFriend: (
 				count: 1.0,
 				modFunc: { |count|
+					~template[\buffer] = Fdef(\resolveAssets).value((
+						'svarta_tangenter-vita_tangenter_melody': "032 svarta tangenter vita tangenter/svarta tangenter stems/svarta tangenter-vita tangenter melody.wav"
+					));
 				}
 			),
 			transitions: [\fade, \xfade, \cut, \bridge, \oneshot]
 		));
 	};
 //end tsv
+
+	~load = {
+		Fdef(\ifHasFriend).value({
+			Fdef(\replaceBuffer).value(
+				'svarta_tangenter-vita_tangenter',
+				"032 svarta tangenter vita tangenter/svarta tangenter stems/svarta tangenter-vita tangenter bas.wav"
+			);
+		})
+	};
 
 	~template[\buffer] = Fdef(\resolveAssets).value((
         /*
