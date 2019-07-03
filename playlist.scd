@@ -8,7 +8,7 @@ Cell({
 	~init = {
 		~routine = Routine({
 			var i = 0, old;
-			var prevDur=0.2, offset, endTime, prevCell;
+			var prevCell;
 			var friend;
 			var list = ~cells[\cells].values.asArray;
 			var count = 0;
@@ -18,6 +18,22 @@ Cell({
 			Cell.debug = false;
 			inf.do {
 				list.scramble.do { |cell|
+
+					if (friend.notNil and: { friend.timeToPos(\playEnd) < cell.timeToPos(\playEnd)}) {
+						friend = ~pickNewFriend.value(cell);
+					};
+
+					//Some things depend on cell needing to know
+					//if they have a friend.
+					//We set the friend variable before loading,
+					//So loading can be affected if needed
+					cell.friend = friend; //can be nil.
+
+					//This is a possibility, but we try to not use it
+					//It's more complicated, since friends' cells can change
+					//during play
+					//friend !? { |f| f.friend = cell };
+
 					cell.load;
 
 					if (prevCell.notNil) {
@@ -27,46 +43,11 @@ Cell({
 					} {
 						cell.play;
 					};
-					cell.settings.tempo.debug("TEMPO");
+
 					count = 0;
-					// Pick a friend from current list of friends,
-					// According to cell's friendFilter
-					if (friend.isPlaying.not) {
-						friend = ~cells.getFriendFor(cell);
-						cell.friend = friend; //can be nil. NB cell is already playing
-						friend !? {
-							var rest;
-							// Pass a reference to cell
-							// If we want any metadata (tempo etc)
-							friend.load;
-							friend.set("level.main.amp", -12.dbamp);
 
-							rest = (cell.settings.duration - friend.settings.duration).max(0);
-
-							// If we want any metadata (tempo etc)
-							//
-							friend.friend = cell;
-
-							fork {
-								var ft;
-								rest.rand.wait;
-								TempoClock.timeToNextBeat(Quant(1, 0, friend.timeToPos(\start))).wait;
-								friend.name.debug("Friend");
-								if (0.3.coin) {
-									friend.fadeIn(5.rrand(15))
-								} {
-									friend.play;
-								};
-								ft = 5.rrand(15).min(friend.timeToPos(\end));
-								friend.waitForPos(\end, ft.neg);
-								friend.fadeOut(ft);
-							};
-
-						} ?? {
-							"Didn't want a new friend".postln
-						}
-					} {
-						"Friend already playing, won't pick new one".postln
+					if (friend.notNil and: { friend.isPlaying.not }) {
+						~playFriend.(friend, cell);
 					};
 
 					~cells.setReverb.(cell);
@@ -78,6 +59,38 @@ Cell({
 				};
 			}
 		}.inEnvir);
+	};
+
+	~pickNewFriend = { |cell|
+		var friend = ~cells.getFriendFor(cell);
+		friend.debug("New friend");
+		friend.load;
+		friend;
+	};
+
+	~playFriend = { |friend, cell|
+		var rest;
+		// Pass a reference to cell
+		// If we want any metadata (tempo etc)
+		friend.set("level.main.amp", -12.dbamp);
+
+		rest = (cell.settings.duration - friend.settings.duration).max(0);
+
+		fork {
+			var ft;
+			rest.rand.wait;
+			TempoClock.timeToNextBeat(Quant(1, 0, friend.timeToPos(\start))).wait;
+			friend.name.debug("Friend");
+			if (0.3.coin) {
+				friend.fadeIn(5.rrand(15))
+			} {
+				friend.play;
+			};
+			ft = 5.rrand(15).min(friend.timeToPos(\end));
+			friend.waitForPos(\end, ft.neg);
+			friend.fadeOut(ft);
+		};
+
 	};
 
 	~postDebugOutput = { |cell|
