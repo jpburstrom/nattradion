@@ -108,3 +108,7 @@ Fdef(\setRandomBufferDuration, { |minDur, maxDur, offset|
 Fdef(\replaceBuffer, { |key, path|
 	~addBuffer.(key, Fdef(\resolveAssetPath).value(path));
 });
+
+Fdef(\ifHasFriend, { |ifTrue, ifFalse|
+	if (~friend.notNil, ifTrue, ifFalse);
+});
