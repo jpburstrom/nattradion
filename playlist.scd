@@ -19,7 +19,12 @@ Cell({
 			inf.do {
 				list.scramble.do { |cell|
 
-					if (friend.notNil and: { friend.timeToPos(\playEnd) < cell.timeToPos(\playEnd)}) {
+					if (friend.isNil || prevCell.isNil
+						or: {
+							(friend.timeToPos(\playEnd) ? 0) <
+							(prevCell.timeToPos(\playEnd) ? inf)
+						}
+					) {
 						friend = ~pickNewFriend.value(cell);
 					};
 
@@ -50,7 +55,7 @@ Cell({
 						~playFriend.(friend, cell);
 					};
 
-					~cells.setReverb.(cell);
+					~cells.setReverb(cell);
 
 					~postDebugOutput.(cell);
 
@@ -64,7 +69,7 @@ Cell({
 	~pickNewFriend = { |cell|
 		var friend = ~cells.getFriendFor(cell);
 		friend.debug("New friend");
-		friend.load;
+		friend !? (_.load);
 		friend;
 	};
 
