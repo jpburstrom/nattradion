@@ -51,8 +51,9 @@ var transitions = (
 		var filter = self.makeFilter(from, to);
 		type = type ?? { self.transitions.keys.choose };
 		type = #[cut, fadeIn, fadeOut, xfade].choose; //TMP
-		fork { 5.wait; type.debug("Next transition");
-			from.timeToPos(\end).debug("to timetopos end");
+		fork {
+			5.wait;
+			from.timeToPos(\end).debug("Time to transition");
 		};
 		type.switch(
 			\oneshot, {
@@ -143,7 +144,6 @@ var transitions = (
 
 			run: { |self ...args|
 				self.calc(*args);
-				self.postln;
 				self.func(*args);
 			},
 
@@ -176,12 +176,12 @@ var transitions = (
 			func: { |self, from, to|
 				//FIXME: calculate time until end marker
 				//Maybe let this be a part of cell
-				from.timeToPos(\end, self.startOffset).debug("Wait");
+				from.timeToPos(\end, self.startOffset);
 				from.waitForPos(\end, self.startOffset);
 				to.play;
 			},
 			calc: { |self, from, to|
-				self.startOffset = to.getMarkerTime(\start).postln.neg
+				self.startOffset = to.getMarkerTime(\start).neg
 			}
 		));
 

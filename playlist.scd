@@ -68,7 +68,6 @@ Cell({
 
 	~pickNewFriend = { |cell|
 		var friend = ~cells.getFriendFor(cell);
-		friend.debug("New friend");
 		friend !? (_.load);
 		friend;
 	};
@@ -83,7 +82,7 @@ Cell({
 
 		fork {
 			var ft;
-			rest.rand.wait;
+			rest.rand.debug("Time to friend start").wait;
 			TempoClock.timeToNextBeat(Quant(1, 0, friend.timeToPos(\start))).wait;
 			friend.name.debug("Friend");
 			if (0.3.coin) {
@@ -99,7 +98,9 @@ Cell({
 	};
 
 	~postDebugOutput = { |cell|
-		cell.getDuration.debug(cell.name);
+		"--- % % ".format(cell.metadata[\number], cell.name).padRight(48, "-").postln;
+		cell.getDuration.debug("Duration");
+		cell.friend !? { |f| f.name.debug("Friend") } ?? "No friend".postln;
 	};
 
 	//Load cells
