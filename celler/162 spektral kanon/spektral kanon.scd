@@ -3,7 +3,7 @@ SynthDef(\sin, {
 
 	var snd = SinOsc.ar(\freq.kr(440, 0.1));
 	snd = snd * Env.asr(0.01, 1.0, 0.01).ar(2, \gate.kr(1));
-	Out.ar(\bus.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
+	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 );
 

@@ -14,7 +14,7 @@ SynthDef(\transient, {
 
 
 
-	Out.ar(\bus.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
+	Out.ar(\out.kr(0), Pan2.ar(snd, \pan.kr(0), \amp.kr(0.1)));
 }).add;
 );
 

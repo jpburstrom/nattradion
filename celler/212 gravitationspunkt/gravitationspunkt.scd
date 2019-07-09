@@ -13,7 +13,7 @@ SynthDef(\flute, {
 	snd = snd.tanh;
 	snd = (snd * 0.7) + (snd.reverse * 0.3);
 
-	Out.ar(\bus.kr(0), Balance2.ar(snd[0], snd[1], \pan.kr(0), \amp.kr(0.1)));
+	Out.ar(\out.kr(0), Balance2.ar(snd[0], snd[1], \pan.kr(0), \amp.kr(0.1)));
 }).add;
 );
 
