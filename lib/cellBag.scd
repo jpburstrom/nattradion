@@ -31,22 +31,27 @@ var out = (
 				count = settings[\count];
 				modFunc = settings[\modFunc];
 			};
-			//Pass count to modFunc, so we can have different inits for different cells
-			count.asInteger.do { |c|
-				var name = "%_%-%".format(cell.name, key, c);
-				var copy = cell.clone({
-					modFunc.(c)
-				})
-				.name_(name);
-				copy.metadata ?? { copy.metadata = () };
-				cell.metadata.keysValuesDo { |k, v|
-					if (copy.metadata.notNil) {
-						copy.metadata[k] = v;
-					}
-				};
-				self.orig.add(copy);
-			}
-
+			self.addCell(cell, count, modFunc, key);
+		}
+	},
+	addCell: { |self, cell, count, modFunc, key, collection|
+		//Pass count to modFunc, so we can have different inits for different cells
+		if (collection.isNil) {
+			collection = self.orig
+		};
+		count.asInteger.do { |c|
+			var name = "%_%-%".format(cell.name, key, c);
+			var copy = cell.clone({
+				modFunc.(c)
+			})
+			.name_(name);
+			copy.metadata ?? { copy.metadata = () };
+			cell.metadata.keysValuesDo { |k, v|
+				if (copy.metadata.notNil) {
+					copy.metadata[k] = v;
+				}
+			};
+			collection.add(copy);
 		}
 	},
 	setMother: { |self, mom|
