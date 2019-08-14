@@ -1,11 +1,11 @@
 "cellBag.scd".resolveRelative.load.putAll((
-	extra: List(),
+	extra: Set(),
 	//Modify this function so it takes a
 	//addCell: { |self, count, modFunc, key, collection|
 
 	//Add cell as extra friend -- won't be a part of main collection
 	addExtraFriend: { |self, cell, modFunc|
-		self.addFriend(cell, 1, modFunc, \extraFriend, self.extra);
+		self.addCell(cell, 1, modFunc, \extraFriend, self.extra);
 	},
 
 	//Similar to the function in cellBag, but look for cells in both current and extra

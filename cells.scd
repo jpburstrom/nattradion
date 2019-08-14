@@ -8,7 +8,8 @@ Cell({
 	~transitions = "lib/transitions.scd".resolveRelative.load;
 
 	//cellBag is a bag-like data structure
-	~friends = "lib/cellBag.scd".loadRelative[0];
+	~friends = "lib/friends.scd".loadRelative[0];
+	~extraFriendNumbers = Set();
 
 	//Returns a filter function for a given cell.
 	//Every time cell is played, we use that function
@@ -87,6 +88,8 @@ Cell({
 
 		cell.friendProbability = prob;
 
+		//Return a function filtering an array of cell objects according to metadata
+		//or function
 		{ |friend|
 			[friend.metadata[\number], cell.metadata[\number]];
 			friend.metadata[\number] != cell.metadata[\number] and: { filter.value(friend) };
@@ -104,6 +107,7 @@ Cell({
 		});
 
 		cell = try { path.load };
+
 
 		if (cell.notNil) {
 
@@ -148,6 +152,19 @@ Cell({
 					~friends.checkAddCell(cell, \isFriend);
 					~transitions.checkAddCell(cell);
 
+					//Hack: If cell is filtering out a single friend by number,
+					//add it to extra friends
+					//(Extra friends are "hidden" friends which is only called out
+					//by number)
+					//TODO: refactor this, it's ugly
+					if (cell.settings[\hasFriend].isKindOf(Dictionary)) {
+						cell.settings[\hasFriend][\number] !? { |num|
+							~extraFriendNumbers.add(num)
+						}
+					};
+
+
+
 					cell.friendFilter = ~friendFilterFactory.(cell);
 
 					cell
@@ -173,6 +190,11 @@ Cell({
 		~loadCellFromPath.(path);
 	};
 
+	~friends.extra.clear;
+
+	~extraFriendNumbers.do { |num|
+		~friends.addExtraFriend(~cells[num]);
+	};
 
 	//Some cell code sets tempo in various ways, let's reset that
 	TempoClock.tempo = 1;
